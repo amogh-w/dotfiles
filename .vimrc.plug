@@ -1,0 +1,51 @@
+call plug#begin('~/.vim/plugged')
+
+" https://github.com/arcticicestudio/nord-vim
+Plug 'arcticicestudio/nord-vim'
+
+" https://github.com/preservim/nerdtree
+Plug 'preservim/nerdtree'
+
+" https://github.com/jistr/vim-nerdtree-tabs
+Plug 'jistr/vim-nerdtree-tabs'
+
+" https://github.com/vim-airline/vim-airline
+Plug 'vim-airline/vim-airline'
+
+" https://github.com/vim-syntastic/syntastic
+Plug 'vim-syntastic/syntastic'
+
+" https://github.com/xolox/vim-misc
+Plug 'xolox/vim-misc'
+
+" https://github.com/xolox/vim-easytags
+Plug 'xolox/vim-easytags'
+
+" https://github.com/majutsushi/tagbar
+Plug 'majutsushi/tagbar'
+
+" https://github.com/ctrlpvim/ctrlp.vim
+Plug 'ctrlpvim/ctrlp.vim'
+
+" https://github.com/vim-scripts/a.vim
+Plug 'vim-scripts/a.vim'
+
+" https://github.com/airblade/vim-gitgutter
+Plug 'airblade/vim-gitgutter'
+
+" https://github.com/tpope/vim-fugitive
+Plug 'tpope/vim-fugitive'
+
+" https://github.com/Raimondi/delimitMate
+Plug 'Raimondi/delimitMate'
+
+" https://github.com/jez/vim-superman
+Plug 'jez/vim-superman'
+
+" https://github.com/vim-scripts/matchit.zip
+Plug 'vim-scripts/matchit.zip'
+
+" https://github.com/luochen1990/rainbow
+Plug 'luochen1990/rainbow'
+
+call plug#end()
