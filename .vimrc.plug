@@ -60,8 +60,14 @@ Plug 'ycm-core/YouCompleteMe'
 " https://github.com/godlygeek/tabular
 Plug 'godlygeek/tabular'
 
+" https://github.com/SirVer/ultisnips
+Plug 'SirVer/ultisnips'
+
 " https://github.com/honza/vim-snippets
 Plug 'honza/vim-snippets'
+
+" https://github.com/ervandew/supertab
+Plug 'ervandew/supertab'
 
 " https://github.com/justinmk/vim-sneak
 Plug 'justinmk/vim-sneak'
