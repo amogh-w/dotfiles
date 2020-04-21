@@ -1,3 +1,10 @@
+" ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+" ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+" ██║   ██║██║██╔████╔██║██████╔╝██║     
+" ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║     
+"  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+"   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+
 " Set compatibility to Vim only.
 set nocompatible
 
@@ -15,6 +22,7 @@ set modelines=0
 
 " Automatically wrap text that extends beyond the screen length.
 set wrap
+
 " Vim's auto indentation feature does not work properly with text copied from outside of Vim. Press the <F2> key to toggle paste mode on/off.
 nnoremap <F2> :set invpaste paste?<CR>
 imap <F2> <C-O>:set invpaste paste?<CR>
@@ -63,10 +71,13 @@ set encoding=utf-8
 
 " Highlight matching search patterns
 set hlsearch
+
 " Enable incremental search
 set incsearch
+
 " Include matching uppercase words with lowercase search term
 set ignorecase
+
 " Include only uppercase words with uppercase search term
 set smartcase
 
@@ -83,7 +94,7 @@ autocmd BufWinEnter *.* silent loadview"
 
 " Call the .vimrc.plug file
 if filereadable(expand("~/.vimrc.plug"))
-    source ~/.vimrc.plug
+  source ~/.vimrc.plug
 endif
 
 " Color Scheme
@@ -95,8 +106,10 @@ nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 " To have NERDTree always open on startup
 let g:nerdtree_tabs_open_on_console_startup = 1
 
-" Nice looking powerline symbols
+" vim-airline/vim-airline settings
 let g:airline_powerline_fonts = 1
+" In vim-airline, only display "hunks" if the diff is non-zero
+let g:airline#extensions#hunks#non_zero_only = 1
 
 " Syntax Checking Hacks for Vim
 set statusline+=%#warningmsg#
@@ -114,8 +127,6 @@ let g:syntastic_check_on_wq = 0
 " xolox/vim-easytags settings
 " Where to look for tags files
 set tags=./tags;,~/.vimtags
-
-" Sensible defaults
 let g:easytags_events = ['BufReadPost', 'BufWritePost']
 let g:easytags_async = 1
 let g:easytags_dynamic_files = 2
@@ -129,16 +140,12 @@ nmap <silent> <leader>b :TagbarToggle<CR>
 " Uncomment to open tagbar automatically whenever possible
 " autocmd BufEnter * nested :call tagbar#autoopen(0)
 
-" CtrlP settings
+" ctrlpvim/ctrlp.vim settings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " airblade/vim-gitgutter settings
-" Required after having changed the colorscheme
 hi clear SignColumn
-
-" In vim-airline, only display "hunks" if the diff is non-zero
-let g:airline#extensions#hunks#non_zero_only = 1
 
 " Raimondi/delimitMate settings
 let delimitMate_expand_cr = 1
@@ -151,8 +158,7 @@ augroup mydelimitMate
 augroup END
 
 " jez/vim-superman settings
-" Better man page support
 noremap K :SuperMan <cword><CR>
 
-" Rainbow - set to 0 if you want to enable it later via :RainbowToggle
-let g:rainbow_active = 1 
+" luochen1990/rainbow settings
+let g:rainbow_active = 1

@@ -48,4 +48,25 @@ Plug 'vim-scripts/matchit.zip'
 " https://github.com/luochen1990/rainbow
 Plug 'luochen1990/rainbow'
 
+" https://github.com/tpope/vim-surround
+Plug 'tpope/vim-surround'
+
+" https://github.com/preservim/nerdcommenter
+Plug 'preservim/nerdcommenter'
+
+" https://github.com/ycm-core/YouCompleteMe
+Plug 'ycm-core/YouCompleteMe'
+
+" https://github.com/godlygeek/tabular
+Plug 'godlygeek/tabular'
+
+" https://github.com/honza/vim-snippets
+Plug 'honza/vim-snippets'
+
+" https://github.com/justinmk/vim-sneak
+Plug 'justinmk/vim-sneak'
+
+" https://github.com/easymotion/vim-easymotion
+Plug 'easymotion/vim-easymotion'
+
 call plug#end()
