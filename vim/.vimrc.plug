@@ -1,0 +1,95 @@
+call plug#begin('~/.vim/plugged')
+
+" https://github.com/arcticicestudio/nord-vim
+Plug 'arcticicestudio/nord-vim'
+
+" https://github.com/preservim/nerdtree
+Plug 'preservim/nerdtree'
+
+" https://github.com/jistr/vim-nerdtree-tabs
+Plug 'jistr/vim-nerdtree-tabs'
+
+" https://github.com/vim-airline/vim-airline
+Plug 'vim-airline/vim-airline'
+
+" https://github.com/vim-syntastic/syntastic
+Plug 'vim-syntastic/syntastic'
+
+" https://github.com/xolox/vim-misc
+Plug 'xolox/vim-misc'
+
+" https://github.com/xolox/vim-easytags
+Plug 'xolox/vim-easytags'
+
+" https://github.com/majutsushi/tagbar
+Plug 'majutsushi/tagbar'
+
+" https://github.com/ctrlpvim/ctrlp.vim
+Plug 'ctrlpvim/ctrlp.vim'
+
+" https://github.com/vim-scripts/a.vim
+Plug 'vim-scripts/a.vim'
+
+" https://github.com/airblade/vim-gitgutter
+Plug 'airblade/vim-gitgutter'
+
+" https://github.com/tpope/vim-fugitive
+Plug 'tpope/vim-fugitive'
+
+" https://github.com/Raimondi/delimitMate
+Plug 'Raimondi/delimitMate'
+
+" https://github.com/jez/vim-superman
+Plug 'jez/vim-superman'
+
+" https://github.com/vim-scripts/matchit.zip
+Plug 'vim-scripts/matchit.zip'
+
+" https://github.com/luochen1990/rainbow
+Plug 'luochen1990/rainbow'
+
+" https://github.com/tpope/vim-surround
+Plug 'tpope/vim-surround'
+
+" https://github.com/preservim/nerdcommenter
+Plug 'preservim/nerdcommenter'
+
+" https://github.com/ycm-core/YouCompleteMe
+Plug 'ycm-core/YouCompleteMe'
+
+" https://github.com/godlygeek/tabular
+Plug 'godlygeek/tabular'
+
+" https://github.com/SirVer/ultisnips
+Plug 'SirVer/ultisnips'
+
+" https://github.com/honza/vim-snippets
+Plug 'honza/vim-snippets'
+
+" https://github.com/ervandew/supertab
+Plug 'ervandew/supertab'
+
+" https://github.com/justinmk/vim-sneak
+Plug 'justinmk/vim-sneak'
+
+" https://github.com/easymotion/vim-easymotion
+Plug 'easymotion/vim-easymotion'
+
+" https://github.com/lervag/vimtex
+Plug 'lervag/vimtex'
+
+" https://github.com/christoomey/vim-tmux-navigator 
+Plug 'christoomey/vim-tmux-navigator'
+
+" https://github.com/benmills/vimux
+Plug 'benmills/vimux'
+
+" https://github.com/chrisbra/Colorizer
+Plug 'chrisbra/Colorizer'
+
+" https://github.com/google/vim-codefmt
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+
+call plug#end()
