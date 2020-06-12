@@ -132,3 +132,6 @@ export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
 
 export VISUAL=vim
 export EDITOR=vim
+export PATH=$PATH:/usr/local/go/bin
+
+SPACESHIP_DOCKER_SHOW="false"
