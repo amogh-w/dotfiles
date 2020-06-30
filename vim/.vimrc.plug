@@ -58,7 +58,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'ycm-core/YouCompleteMe'
 
 " https://github.com/godlygeek/tabular
-Plug 'godlygeek/tabular'
+" Plug 'godlygeek/tabular'
 
 " https://github.com/SirVer/ultisnips
 Plug 'SirVer/ultisnips'

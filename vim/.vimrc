@@ -174,12 +174,12 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " godlygeek/tabular settings
-if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-endif
+"if exists(":Tabularize")
+"  nmap <Leader>a= :Tabularize /=<CR>
+"  vmap <Leader>a= :Tabularize /=<CR>
+"  nmap <Leader>a: :Tabularize /:\zs<CR>
+"  vmap <Leader>a: :Tabularize /:\zs<CR>
+"endif
 
 " ycm-core/YouCompleteMe settings with SuperTab
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -205,9 +205,10 @@ set splitright
 
 " Prompt for a command to run
 map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vl :VimuxRunLastCommand<CR>
 
 " vimtex settings
-let g:syntastic_tex_lacheck_quiet_messages = { 'regex': '\Vpossible unwanted space at, you may need a \/ before "B" ', }
+"let g:syntastic_tex_lacheck_quiet_messages = { 'regex': '\Vpossible unwanted space at, you may need a \/ before "B" ', }
 
 " vim-codefmt settings
 augroup autoformat_settings
@@ -218,8 +219,11 @@ augroup autoformat_settings
  autocmd FileType gn AutoFormatBuffer gn
  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
  autocmd FileType java AutoFormatBuffer google-java-format
- autocmd FileType python AutoFormatBuffer yapf
+ autocmd FileType python AutoFormatBuffer black
  " Alternative autocmd FileType python AutoFormatBuffer autopep8
  autocmd FileType rust AutoFormatBuffer rustfmt
  autocmd FileType vue AutoFormatBuffer prettier
 augroup END
+
+" copy current buffer
+nmap <leader>y ggVG"+y''
