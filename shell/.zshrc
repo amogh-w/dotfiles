@@ -146,3 +146,15 @@ export PATH="$PATH:$HOME/.emacs.d/bin/"
 export CUDA_HOME=/usr/local/cuda
 export DYLD_LIBRARY_PATH="$CUDA_HOME/lib:$CUDA_HOME:$CUDA_HOME/extras/CUPTI/lib"
 export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH
+
+export CUDNN_LIBRARY="/usr/local/cuda/lib/libcudnn.7.dylib"
+export CUDNN_INCLUDE_DIR="/usr/local/cuda/include"
+export CUDNN_LIB_DIR="/usr/local/cuda/lib"
+
+export ANT_HOME=/usr/local/opt/ant
+export MAVEN_HOME=/usr/local/opt/maven
+export GRADLE_HOME=/usr/local/opt/gradle
+export ANDROID_HOME=/Users/amogh/Library/Android/sdk
+export PATH=$ANDROID_HOME/tools:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/build-tools/30.0.1:$PATH

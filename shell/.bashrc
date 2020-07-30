@@ -162,3 +162,4 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export VISUAL=vim
 export EDITOR=vim
+alias ic="ibmcloud"
