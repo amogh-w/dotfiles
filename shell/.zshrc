@@ -134,4 +134,26 @@ export VISUAL=vim
 export EDITOR=vim
 export PATH=$PATH:/usr/local/go/bin
 
-SPACESHIP_DOCKER_SHOW="false"
+export PATH="$PATH:$HOME/.emacs.d/bin"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/amogh/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/amogh/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/amogh/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/amogh/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0 # in WSL 2
+export LIBGL_ALWAYS_INDIRECT=1
+
+export PATH=$PATH:/usr/local/go/bin
+
+SPACESHIP_DOCKER_SHOW=false

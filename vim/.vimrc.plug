@@ -55,7 +55,10 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/nerdcommenter'
 
 " https://github.com/ycm-core/YouCompleteMe
-Plug 'ycm-core/YouCompleteMe'
+" Plug 'ycm-core/YouCompleteMe'
+
+" https://github.com/neoclide/coc.nvim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " https://github.com/godlygeek/tabular
 Plug 'godlygeek/tabular'
@@ -76,7 +79,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'easymotion/vim-easymotion'
 
 " https://github.com/lervag/vimtex
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 
 " https://github.com/christoomey/vim-tmux-navigator 
 Plug 'christoomey/vim-tmux-navigator'
