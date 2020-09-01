@@ -7,6 +7,10 @@ set $mod Mod4
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
 
+# set second monitor to the right
+exec_always --no-startup-id xrandr --output HDMI-2 --right-of eDP-1
+#exec_always --no-startup-id xrandr --output HDMI-1-2 --right-of eDP-1-1
+
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 3
 default_floating_border normal
@@ -150,6 +154,26 @@ set $ws6 "6: ろく"
 set $ws7 "7: なな"
 set $ws8 "8: はち"
 
+# outputs
+workspace $ws1 output eDP-1
+workspace $ws2 output eDP-1
+workspace $ws3 output HDMI-2
+workspace $ws4 output HDMI-2
+workspace $ws5 output HDMI-2
+workspace $ws6 output HDMI-2
+workspace $ws7 output HDMI-2
+workspace $ws8 output HDMI-2
+
+# outputs
+#workspace $ws1 output eDP-1-1
+#workspace $ws2 output eDP-1-1
+#workspace $ws3 output HDMI-1-2
+#workspace $ws4 output HDMI-1-2
+#workspace $ws5 output HDMI-1-2
+#workspace $ws6 output HDMI-1-2
+#workspace $ws7 output HDMI-1-2
+#workspace $ws8 output HDMI-1-2
+
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -181,11 +205,11 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
-assign [class="Thunar"] $ws1
-assign [class="Google-chrome-beta"] $ws2
-assign [class="code-oss"] $ws3
-assign [class="whats-app-web-nativefier-d52542"] $ws5
-assign [class="telegram-desktop"] $ws5
+#assign [class="Thunar"] $ws1
+#assign [class="Google-chrome-beta"] $ws2
+#assign [class="code-oss"] $ws3
+#assign [class="whats-app-web-nativefier-d52542"] $ws5
+#assign [class="telegram-desktop"] $ws5
 
 
 # Open specific applications in floating mode
@@ -216,6 +240,8 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [title="Microsoft Teams Notification"] floating enable
+for_window [ class="^Microsoft Teams" ] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -346,8 +372,8 @@ bar {
 	position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
+  tray_output primary
+  tray_output eDP1
 
 	bindsym button4 nop
 	bindsym button5 nop

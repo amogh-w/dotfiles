@@ -172,3 +172,10 @@ interval=10
 #markup=pango
 #interval=once
 #signal=11
+
+# Spotify icon \uF1BC
+[spotify]
+label= 
+command=$SCRIPT_DIR/i3blocks-spotify/spotify.py
+color=#81b71a
+interval=5
