@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "Amogh Warkhandkar"
+      user-mail-address "amoghw2025@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -25,7 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-nord)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -52,3 +52,59 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(use-package! org-super-agenda
+  :after org-agenda
+  :init
+  (setq org-super-agenda-groups '((:name "Today"
+                                   :time-grid t
+                                   :scheduled today)
+                                  (:name "Due today"
+                                   :deadline today)
+                                  (:name "Important"
+                                   :priority "A")
+                                  (:name "Overdue"
+                                   :deadline past)
+                                  (:name "Due soon"
+                                   :deadline future)
+                                  (:name "Big Outcomes"
+                                   :tag "bo")))
+  :config
+  (org-super-agenda-mode)
+  )
+
+;; Highlights all matches of the selection in the buffer.
+(define-key evil-visual-state-map "R" 'evil-multiedit-match-all)
+
+;; Match the word under cursor (i.e. make it an edit region). Consecutive presses will
+;; incrementally add the next unmatched match.
+(define-key evil-normal-state-map (kbd "M-d") 'evil-multiedit-match-and-next)
+;; Match selected region.
+(define-key evil-visual-state-map (kbd "M-d") 'evil-multiedit-match-and-next)
+;; Insert marker at point
+(define-key evil-insert-state-map (kbd "M-d") 'evil-multiedit-toggle-marker-here)
+
+;; Same as M-d but in reverse.
+(define-key evil-normal-state-map (kbd "M-D") 'evil-multiedit-match-and-prev)
+(define-key evil-visual-state-map (kbd "M-D") 'evil-multiedit-match-and-prev)
+
+;; OPTIONAL: If you prefer to grab symbols rather than words, use
+;; `evil-multiedit-match-symbol-and-next` (or prev).
+
+;; Restore the last group of multiedit regions.
+(define-key evil-visual-state-map (kbd "C-M-D") 'evil-multiedit-restore)
+
+;; RET will toggle the region under the cursor
+;;(define-key evil-multiedit-state-map (kbd "RET") 'evil-multiedit-toggle-or-restrict-region)
+
+;; ...and in visual mode, RET will disable all fields outside the selected region
+(define-key evil-motion-state-map (kbd "RET") 'evil-multiedit-toggle-or-restrict-region)
+
+;; For moving between edit regions
+;;(define-key evil-multiedit-state-map (kbd "C-n") 'evil-multiedit-next)
+;;(define-key evil-multiedit-state-map (kbd "C-p") 'evil-multiedit-prev)
+;;(define-key evil-multiedit-insert-state-map (kbd "C-n") 'evil-multiedit-next)
+;;(define-key evil-multiedit-insert-state-map (kbd "C-p") 'evil-multiedit-prev)
+
+;; Ex command that allows you to invoke evil-multiedit with a regular expression, e.g.
+(evil-ex-define-cmd "ie[dit]" 'evil-multiedit-ex-match)
