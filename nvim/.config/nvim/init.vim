@@ -20,6 +20,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'machakann/vim-highlightedyank'
 Plug 'majutsushi/tagbar'
 Plug 'lervag/vimtex'
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
 
 call plug#end()
 
@@ -130,3 +131,6 @@ call deoplete#custom#var('omni', 'input_patterns', {
       \ })
 let g:vimtex_view_general_viewer = 'zathura'
 let g:tex_flavor = 'latex'
+
+" vimspector settings
+let g:vimspector_enable_mappings = 'HUMAN'
