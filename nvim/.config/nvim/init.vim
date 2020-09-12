@@ -3,7 +3,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-clang'
 Plug 'dense-analysis/ale'
 Plug 'sbdchd/neoformat'
 Plug 'davidhalter/jedi-vim'
@@ -21,6 +20,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'majutsushi/tagbar'
 Plug 'lervag/vimtex'
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
