@@ -20,6 +20,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'majutsushi/tagbar'
 Plug 'lervag/vimtex'
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
