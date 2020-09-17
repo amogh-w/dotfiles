@@ -103,7 +103,7 @@ SPACESHIP_CHAR_SYMBOL="> "
 unsetopt PROMPT_SP
 
 # Android
-export ANDROID_HOME=$HOME/Android/Sdk
+export ANDROID_HOME=$HOME/Library/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
