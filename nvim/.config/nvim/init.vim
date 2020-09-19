@@ -21,12 +21,15 @@ Plug 'majutsushi/tagbar'
 Plug 'lervag/vimtex'
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python'}
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 call plug#end()
 
 " general settings
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set number relativenumber
+set splitbelow
+set splitright
 
 " theme
 colorscheme nord
@@ -134,3 +137,4 @@ let g:tex_flavor = 'latex'
 
 " vimspector settings
 let g:vimspector_enable_mappings = 'HUMAN'
+map <Leader><Leader>d :VimspectorReset<CR>

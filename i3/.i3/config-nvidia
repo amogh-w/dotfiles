@@ -8,7 +8,7 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # set second monitor to the right
-exec_always --no-startup-id xrandr --output HDMI-2 --right-of eDP-1
+exec_always --no-startup-id xrandr --output HDMI-1-2 --right-of eDP-1-1
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 3
@@ -154,14 +154,14 @@ set $ws7 "7: なな"
 set $ws8 "8: はち"
 
 # outputs
-workspace $ws1 output eDP-1
-workspace $ws2 output eDP-1
-workspace $ws3 output HDMI-2
-workspace $ws4 output HDMI-2
-workspace $ws5 output HDMI-2
-workspace $ws6 output HDMI-2
-workspace $ws7 output HDMI-2
-workspace $ws8 output HDMI-2
+workspace $ws1 output eDP-1-1
+workspace $ws2 output eDP-1-1
+workspace $ws3 output HDMI-1-2
+workspace $ws4 output HDMI-1-2
+workspace $ws5 output HDMI-1-2
+workspace $ws6 output HDMI-1-2
+workspace $ws7 output HDMI-1-2
+workspace $ws8 output HDMI-1-2
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
