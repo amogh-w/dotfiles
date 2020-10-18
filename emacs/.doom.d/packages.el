@@ -51,3 +51,5 @@
 
 (package! org-super-agenda)
 (package! evil-multiedit)
+(package! company-tabnine)
+(package! tide)
