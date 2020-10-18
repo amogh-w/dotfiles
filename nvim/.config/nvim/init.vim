@@ -1,3 +1,7 @@
+if exists('g:vscode')
+  source $HOME/.config/nvim/vscode.vim
+endif
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'arcticicestudio/nord-vim'
