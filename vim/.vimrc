@@ -106,8 +106,11 @@ colorscheme nord
 " Open/close NERDTree Tabs with \t
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 " To have NERDTree always open on startup
-let g:nerdtree_tabs_open_on_console_startup = 1
+" let g:nerdtree_tabs_open_on_console_startup = 1
 
 " vim-airline/vim-airline settings
 let g:airline_powerline_fonts = 1

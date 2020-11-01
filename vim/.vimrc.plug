@@ -95,4 +95,7 @@ Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 
+" https://github.com/Xuyuanp/nerdtree-git-plugin
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 call plug#end()

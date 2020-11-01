@@ -102,22 +102,6 @@ source $ZSH/oh-my-zsh.sh
 SPACESHIP_CHAR_SYMBOL="> "
 unsetopt PROMPT_SP
 
-# Anaconda
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/amogh/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/amogh/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/amogh/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/amogh/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 # Android
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -125,14 +109,13 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-alias delhist="echo "" > .zsh_history && echo "" > .bash_history"
+alias delhist="echo "" > ~/.zsh_history && echo "" > ~/.bash_history"
 
 # Vim Superman
 export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
 
 export VISUAL=vim
 export EDITOR=vim
-export PATH=$PATH:/usr/local/go/bin
 
 export PATH="$PATH:$HOME/.emacs.d/bin"
 
@@ -151,9 +134,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# WSL GUI
 export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0 # in WSL 2
-export LIBGL_ALWAYS_INDIRECT=1
 
-export PATH=$PATH:/usr/local/go/bin
-
+# WSL Docker Disable
 SPACESHIP_DOCKER_SHOW=false
