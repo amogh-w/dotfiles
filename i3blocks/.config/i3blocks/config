@@ -133,10 +133,10 @@ interval=5
 #
 # This displays "ARTIST - SONG" if a music is playing.
 # Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
-#[mediaplayer]
-#instance=spotify
-#interval=5
-#signal=10
+# [mediaplayer]
+# instance=spotify
+# interval=5
+# signal=10
 
 # OpenVPN support
 #
@@ -175,7 +175,7 @@ interval=10
 
 # Spotify icon \uF1BC
 [spotify]
-label= 
-command=$SCRIPT_DIR/i3blocks-spotify/spotify.py
+label=
+command=$SCRIPT_DIR/spotify/spotify.py
 color=#81b71a
 interval=5
