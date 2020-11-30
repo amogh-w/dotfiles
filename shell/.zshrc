@@ -102,7 +102,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Custom
 SPACESHIP_CHAR_SYMBOL="> "
+SPACESHIP_DOCKER_SHOW=false
 unsetopt PROMPT_SP
+export LC_ALL="en_US.UTF-8"
 
 # Android
 export ANDROID_HOME=$HOME/Android/Sdk
