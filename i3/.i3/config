@@ -7,7 +7,10 @@ set $mod Mod4
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
 
-# set second monitor to the right
+# set default monitor on Z97X
+exec_always --no-startup-id xrandr --output HDMI-0 --primary
+
+# set second monitor to the right on GV62
 # exec_always --no-startup-id xrandr --output HDMI-2 --right-of eDP-1
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
@@ -24,7 +27,7 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:URWGothic-Book 11
+font xft:SauceCodePro Nerd Font 12
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -39,18 +42,18 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show run
 
 # launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
+# bindsym $mod+z exec --no-startup-id morc_menu
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
 exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-# exec --no-startup-id pkill pulseaudio
 exec --no-startup-id start-pulseaudio-x11
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+# bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+# exec --no-startup-id pkill pulseaudio
+# exec --no-startup-id pa-applet
+# bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
@@ -61,8 +64,7 @@ exec --no-startup-id start-pulseaudio-x11
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec palemoon
-bindsym $mod+F3 exec pcmanfm
-# bindsym $mod+F3 exec ranger
+bindsym $mod+F3 exec kitty -e 'ranger'
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill picom
@@ -71,8 +73,8 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-#bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+# bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 
 # focus_follows_mouse no
 
@@ -154,7 +156,7 @@ set $ws6 "6: ろく"
 set $ws7 "7: なな"
 set $ws8 "8: はち"
 
-# outputs
+# outputs for Dual Monitor GV62
 # workspace $ws1 output eDP-1
 # workspace $ws2 output eDP-1
 # workspace $ws3 output HDMI-2
@@ -195,11 +197,11 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
-#assign [class="Thunar"] $ws1
-#assign [class="Google-chrome-beta"] $ws2
-#assign [class="code-oss"] $ws3
-#assign [class="whats-app-web-nativefier-d52542"] $ws5
-#assign [class="telegram-desktop"] $ws5
+# assign [class="Thunar"] $ws1
+# assign [class="Google-chrome-beta"] $ws2
+# assign [class="code-oss"] $ws3
+# assign [class="whats-app-web-nativefier-d52542"] $ws5
+# assign [class="telegram-desktop"] $ws5
 
 
 # Open specific applications in floating mode
@@ -292,18 +294,18 @@ bindsym $mod+9 exec --no-startup-id blurlock
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom --config ~/.config/picom/picom.conf -b --experimental-backends -b
-#exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-# exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+# exec --no-startup-id manjaro-hello
+# exec --no-startup-id blueman-applet
+# exec_always --no-startup-id sbxkb
+# exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_green
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -456,4 +458,4 @@ mode "$mode_gaps_outer" {
 # Custom
 exec_always --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
 exec --no-startup-id optimus-manager-qt
-exec_always --no-startup-id flashfocus
+# exec_always --no-startup-id flashfocus
