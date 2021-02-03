@@ -293,7 +293,9 @@ bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; picom --config ~/.config/picom/picom.conf -b --experimental-backends -b
+exec --no-startup-id nitrogen --restore;
+exec --no-startup-id sleep 1;
+exec --no-startup-id picom --config ~/.config/picom/picom.conf -b --experimental-backends -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
@@ -363,26 +365,26 @@ bar {
 	status_command SCRIPT_DIR=~/.config/i3blocks i3blocks
 	position bottom
 
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-  tray_output primary
-  # tray_output eDP1
+        # please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+        # alternative: tray_output eDP1
+        tray_output primary
 
 	bindsym button4 nop
 	bindsym button5 nop
-#   font xft:URWGothic-Book 11
+        font xft:SauceCodePro Nerd Font 12
 	strip_workspace_numbers yes
 
-    colors {
-        background #3B4252
-        statusline #ECEFF4
-        separator  #81A1C1
+        colors {
+                background #3B4252
+                statusline #ECEFF4
+                separator  #81A1C1
 
-#                      border  backgr. text
-        focused_workspace  #81A1C1 #2E3440 #ECEFF4
-        active_workspace   #81A1C1 #2E3440 #ECEFF4
-        inactive_workspace #3B4252 #3B4252 #ECEFF4
-        binding_mode       #D08770 #3B4252 #ECEFF4
-        urgent_workspace   #D08770 #D08770 #ECEFF4
+                #                  border  backgr. text
+                focused_workspace  #81A1C1 #2E3440 #ECEFF4
+                active_workspace   #81A1C1 #2E3440 #ECEFF4
+                inactive_workspace #3B4252 #3B4252 #ECEFF4
+                binding_mode       #D08770 #3B4252 #ECEFF4
+                urgent_workspace   #D08770 #D08770 #ECEFF4
     }
 }
 
@@ -455,7 +457,8 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-# Custom
+# set the scrolling direction for touchpad
 exec_always --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+
+# open optimus manager on startup
 exec --no-startup-id optimus-manager-qt
-# exec_always --no-startup-id flashfocus

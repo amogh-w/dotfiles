@@ -1,4 +1,5 @@
 configuration {
-	theme: "/home/amogh/.local/share/rofi/themes/base16-nord.rasi";
-	font: "Source Code Pro for Powerline 14";
+	theme: ".config/rofi/themes/base16-nord.rasi";
+	font: "SauceCodePro Nerd Font 16";
+	fullscreen: false;
 }

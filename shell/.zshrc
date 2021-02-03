@@ -106,6 +106,7 @@ SPACESHIP_DOCKER_SHOW=false
 unsetopt PROMPT_SP
 export LC_ALL="en_US.UTF-8"
 export TF_FORCE_GPU_ALLOW_GROWTH=true
+export BROWSER=/usr/bin/google-chrome-stable
 
 # Android
 export ANDROID_HOME=$HOME/Android/Sdk
