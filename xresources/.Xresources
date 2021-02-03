@@ -45,10 +45,10 @@
 !URxvt.boldFont: -*-rissole-*
 !URxvt.italicFont: -*-rissole-*
 !URxvt.boldItalicfont: -*-rissole-*
-URxvt.font: xft:Source Code Pro for Powerline:style=Regular:size=12
-URxvt.boldFont: xft:Source Code Pro for Powerline:style=Bold:size=12
-URxvt.italicFont: xft:Source Code Pro for Powerline:style=Italic:size=12
-URxvt.boldItalicFont: xft:Source Code Pro for Powerline:style=Bold Italic:size=12
+URxvt.font: xft:SauceCodePro Nerd Font:style=Regular:size=12
+URxvt.boldFont: xft:SauceCodePro Nerd Font:style=Bold:size=12
+URxvt.italicFont: xft:SauceCodePro Nerd Font:style=Italic:size=12
+URxvt.boldItalicFont: xft:SauceCodePro Nerd Font:style=Bold Italic:size=12
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
