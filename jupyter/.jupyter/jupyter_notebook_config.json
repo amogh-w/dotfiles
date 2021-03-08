@@ -3,7 +3,7 @@
     "open_browser": false,
     "port": 8888,
     "ip": "0.0.0.0",
-	  "allow_origin": "*",
-    "password": "argon2:$argon2id$v=19$m=10240,t=10,p=8$Oqff0d0POM2yhZTj2wpYpw$itslbFcBY2ZzLQw61mblOw"
+    "allow_origin": "*",
+    "password": "argon2:$argon2id$v=19$m=10240,t=10,p=8$JDQ/QB66qOcDU+Ebhp32jw$8F51xRJ3+kQalTh4fwuGKw"
   }
 }

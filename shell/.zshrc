@@ -139,3 +139,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")

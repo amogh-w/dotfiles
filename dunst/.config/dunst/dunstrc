@@ -1,8 +1,8 @@
 [global]
     frame_width = 1
-   frame_color = "#E5E9F0" 
+    frame_color = "#E5E9F0" 
     
-    font = Noto Sans 10
+    font = SauceCodePro Nerd Font 12
     
     # Allow a small subset of html markup:
     #   <b>bold</b>
