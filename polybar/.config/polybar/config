@@ -1,0 +1,351 @@
+[bar/mybar]
+modules-left = i3
+modules-center = spotify
+modules-right = filesystem memory cpu date
+scroll-up = "#i3.prev"
+scroll-down = "#i3.next"
+tray-position = right
+font-0 = "Siji:pixelsize=12"
+font-1 = "FontAwesome:pixelsize=12"
+font-2 = "SauceCodePro Nerd Font:pixelsize=12"
+font-3 = "Noto Color Emoji:pixelsize=6"
+
+[colors]
+primary = #0000ff
+black = #000
+white = #fff
+grey = #aaa
+darkgrey = #555
+red = #f00
+green = #0f0
+
+PARENT_BAR="now-playing"
+PLAYER="playerctld"
+FORMAT="{{ title }} - {{ artist }}"
+
+[module/i3]
+type = internal/i3
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+; Default: false
+strip-wsnumbers = true
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = true
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = false
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
+
+; ws-icon-[0-9]+ = <label>;<icon>
+; NOTE: The <label> needs to match the name of the i3 workspace
+; Neither <label> nor <icon> can contain a semicolon (;)
+ws-icon-0 = 1;♚
+ws-icon-1 = 2;♛
+ws-icon-2 = 3;♜
+ws-icon-3 = 4;♝
+ws-icon-4 = 5;♞
+ws-icon-default = ♟
+; NOTE: You cannot skip icons, e.g. to get a ws-icon-6
+; you must also define a ws-icon-5.
+; NOTE: Icon will be available as the %icon% token inside label-*
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #e60053
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = %index%
+label-focused-foreground = #ffffff
+label-focused-background = #3f3f3f
+label-focused-underline = #fba922
+label-focused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %index%
+label-unfocused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %index%
+label-visible-underline = #555555
+label-visible-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 4
+
+; Separator in between workspaces
+label-separator = |
+label-separator-padding = 2
+label-separator-foreground = #ffb52a
+
+[module/cpu]
+type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format = <label> <ramp-coreload>
+
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+;   %percentage-sum% - Cumulative load on all cores
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = CPU %percentage%%
+
+; Spacing between individual per-core ramps
+ramp-coreload-spacing = 1
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+[module/date]
+type = internal/date
+
+; Seconds to sleep between updates
+; Default: 1.0
+interval = 1.0
+
+; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = %Y-%m-%d%
+
+; Optional time format
+time = %H:%M
+
+; if `date-alt` or `time-alt` is defined, clicking
+; the module will toggle between formats
+date-alt = %A, %d %B %Y
+time-alt = %H:%M:%S
+
+; Available tags:
+;   <label> (default)
+;format = 🕓 <label>
+format = <label>
+;format-background = #55ff3399
+;format-foreground = #fff
+
+; Available tokens:
+;   %date%
+;   %time%
+; Default: %date%
+label = %date% %time%
+label-font = 3
+;label-foreground = #9A32DB
+
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+;mount-1 = /home
+;mount-2 = /var
+
+; Seconds to sleep between updates
+; Default: 30
+interval = 10
+
+; Display fixed precision values
+; Default: false
+fixed-values = true
+
+; Spacing between entries
+; Default: 2
+spacing = 4
+
+; Available tags:
+;   <label-mounted> (default)
+;   <bar-free>
+;   <bar-used>
+;   <ramp-capacity>
+format-mounted = <label-mounted>
+
+; Available tags:
+;   <label-unmounted> (default)
+format-unmounted = <label-unmounted>
+
+; Available tokens:
+;   %mountpoint%
+;   %type%
+;   %fsname%
+;   %percentage_free%
+;   %percentage_used%
+;   %total%
+;   %free%
+;   %used%
+; Default: %mountpoint% %percentage_free%%
+label-mounted = %mountpoint%: %percentage_free%% of %total%
+
+; Available tokens:
+;   %mountpoint%
+; Default: %mountpoint% is not mounted
+label-unmounted = %mountpoint%: not mounted
+label-unmounted-foreground = #55
+
+[module/memory]
+type = internal/memory
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3
+
+; Available tags:
+;   <label> (default)
+;   <bar-used>
+;   <bar-free>
+;   <ramp-used>
+;   <ramp-free>
+;   <bar-swap-used>
+;   <bar-swap-free>
+;   <ramp-swap-used>
+;   <ramp-swap-free>
+format = <label> <bar-used>
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
+
+label = RAM %gb_used%/%gb_free%
+
+; Only applies if <bar-used> is used
+bar-used-indicator =
+bar-used-width = 50
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+
+; Only applies if <ramp-used> is used
+ramp-used-0 = ▁
+ramp-used-1 = ▂
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = █
+
+; Only applies if <ramp-free> is used
+ramp-free-0 = ▁
+ramp-free-1 = ▂
+ramp-free-2 = ▃
+ramp-free-3 = ▄
+ramp-free-4 = ▅
+ramp-free-5 = ▆
+ramp-free-6 = ▇
+ramp-free-7 = █
+
+[module/spotify]
+type = custom/script
+tail = true
+; prefix symbol is shown before the text
+format-prefix = " "
+format = <label>
+exec = ~/.config/polybar/scripts/scroll_spotify_status.sh
+
+[module/spotify-prev]
+type = custom/script
+exec = echo "<previous-song-symbol>"
+format = <label>
+click-left = playerctl previous spotify
+
+[module/spotify-play-pause]
+type = custom/ipc
+hook-0 = echo "<playing-symbol>"
+hook-1 = echo "<pause-symbol>"
+initial = 1
+click-left = playerctl play-pause spotify
+
+[module/spotify-next]
+type = custom/script
+exec = echo "next-song-symbol"
+format = <label>
+click-left = playerctl next spotify
