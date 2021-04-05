@@ -33,3 +33,6 @@ set recolor-darkcolor           "#ECEFF4"
 
 set recolor                     "false"
 set recolor-keephue             "false"
+
+# Invert Color
+map <C-i> recolor
