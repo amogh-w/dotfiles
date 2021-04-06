@@ -10,6 +10,12 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 
+-- Custom widgets
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+local ramgraph_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
+
 -- Theme handling library
 local beautiful = require("beautiful")
 
@@ -48,8 +54,8 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
--- beautiful.init("/home/amogh/.config/awesome/theme.lua")
-beautiful.init(gears.filesystem.get_themes_dir() .. "nord/theme.lua")
+beautiful.init("/home/amogh/.config/awesome/xresources/theme.lua")
+-- beautiful.init(gears.filesystem.get_themes_dir() .. "xresources/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -223,9 +229,17 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            spotify_widget({
+                font = 'Ubuntu Mono 9',
+                play_icon = '/usr/share/icons/Papirus-Light/24x24/categories/spotify.svg',
+                pause_icon = '/usr/share/icons/Papirus-Dark/24x24/panel/spotify-indicator.svg'
+             }),
+            -- mykeyboardlayout,
+            cpu_widget(),
+            ramgraph_widget(),
             wibox.widget.systray(),
             mytextclock,
+            logout_menu_widget(),
             s.mylayoutbox,
         },
     }
@@ -234,7 +248,7 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    -- awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -577,8 +591,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Gaps between windows.
-beautiful.useless_gap = 3
-beautiful.gap_single_client = false
+-- beautiful.useless_gap = 3
+-- beautiful.gap_single_client = false
 
 -- Startup apps.
 awful.spawn.with_shell("picom --config ~/.config/picom/picom.conf -b --experimental-backends -b")
