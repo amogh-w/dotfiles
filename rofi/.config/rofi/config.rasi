@@ -1,5 +1,5 @@
 configuration {
 	theme: ".config/rofi/themes/base16-nord.rasi";
-	font: "SauceCodePro Nerd Font 16";
+	font: "SauceCodePro Nerd Font 12";
 	fullscreen: false;
 }
