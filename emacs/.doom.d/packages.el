@@ -48,3 +48,35 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+;; install packages
+;; (package! some-package)
+
+;; (package! another-package
+;;   :recipe (:host github :repo "username/repo"))
+
+;; (package! this-package
+;;   :recipe (:host github :repo "username/repo"
+;;            :files ("some-file.el" "src/lisp/*.el")))
+
+;; (package! builtin-package :recipe (:nonrecursive t))
+;; (package! builtin-package-2 :recipe (:repo "myfork/package"))
+;; (package! builtin-package :recipe (:branch "develop"))
+
+;; disable packages
+;; (package! builtin-package :disable t)
+
+;; discord
+(package! elcord)
+
+;; info colors
+(package! info-colors)
+
+;; get shell vars
+(package! exec-path-from-shell)
+
+;; typescript
+(package! tide)
+
+;; quickrun
+(package! quickrun)
