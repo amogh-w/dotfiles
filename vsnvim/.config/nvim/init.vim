@@ -113,5 +113,5 @@ nmap gcc <Plug>VSCodeCommentaryLine
 nmap <Tab> :Tabnext<CR>
 nmap <S-Tab> :Tabprev<CR>
 
-highlight QuickScopePrimary guifg='#81A1C1' gui=underline ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg='#A3BE8C' gui=underline ctermfg=81 cterm=underline
+highlight QuickScopePrimary guifg='#A3BE8C' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#EBCB8B' gui=underline ctermfg=81 cterm=underline
