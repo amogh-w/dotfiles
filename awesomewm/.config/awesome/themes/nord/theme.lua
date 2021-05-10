@@ -22,7 +22,10 @@ theme.fg_urgent = "#BF616A"
 theme.bg_normal = "#2E3440"
 theme.bg_focus = "#2E3440"
 theme.bg_urgent = "#2E3440"
-theme.taglist_fg_focus = "#81A1C1"
+theme.taglist_fg_focus = "#ECEFF4"
+theme.taglist_bg_focus = "#5E81AC"
+theme.taglist_fg_occupied = "#ECEFF4"
+theme.taglist_bg_occupied = "#81A1C1"
 theme.tasklist_bg_focus = "#2E3440"
 theme.tasklist_fg_focus = "#81A1C1"
 theme.border_width = dpi(2)
@@ -312,38 +315,38 @@ function theme.at_screen_connect(s)
         filter = awful.widget.taglist.filter.all,
         style = {shape = gears.shape.powerline},
         layout = {
-            spacing = 12,
-            spacing_widget = {
-                color = '#81A1C1',
-                shape = gears.shape.powerline,
-                widget = wibox.widget.separator
-            },
+            -- spacing = 12,
+            -- spacing_widget = {
+            --     color = '#81A1C1',
+            --     shape = gears.shape.powerline,
+            --     widget = wibox.widget.separator
+            -- },
             layout = wibox.layout.fixed.horizontal
         },
         widget_template = {
             {
+                -- {
+                --     {
+                --         {id = 'index_role', widget = wibox.widget.textbox},
+                --         margins = 4,
+                --         widget = wibox.container.margin
+                --     },
+                --     bg = '#81A1C1',
+                --     shape = gears.shape.circle,
+                --     widget = wibox.container.background
+                -- },
+                -- {
+                --     {id = 'icon_role', widget = wibox.widget.imagebox},
+                --     margins = 2,
+                --     widget = wibox.container.margin
+                -- },
                 {
-                    -- {
-                    --     {
-                    --         {id = 'index_role', widget = wibox.widget.textbox},
-                    --         margins = 4,
-                    --         widget = wibox.container.margin
-                    --     },
-                    --     bg = '#81A1C1',
-                    --     shape = gears.shape.circle,
-                    --     widget = wibox.container.background
-                    -- },
-                    -- {
-                    --     {id = 'icon_role', widget = wibox.widget.imagebox},
-                    --     margins = 2,
-                    --     widget = wibox.container.margin
-                    -- },
                     {id = 'text_role', widget = wibox.widget.textbox},
-                    layout = wibox.layout.fixed.horizontal
+                    widget = wibox.container.margin,
+                    left = 16,
+                    right = 16
                 },
-                left = 10,
-                right = 10,
-                widget = wibox.container.margin
+                layout = wibox.layout.fixed.horizontal
             },
             id = 'background_role',
             widget = wibox.container.background,
@@ -400,7 +403,15 @@ function theme.at_screen_connect(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- wibox.widget.systray(),
-            arrow(theme.bg_normal, "#5E81AC"),
+            arrow(theme.bg_normal, "#81A1C1"),
+            wibox.container.background(wibox.container.margin(
+                                           wibox.widget {
+                    -- memicon,
+                    make_fa_icon('\u{f0c9} '),
+                    wibox.widget.systray(),
+                    layout = wibox.layout.align.horizontal
+                }, dpi(2), dpi(3)), "#81A1C1"),
+            arrow("#81A1C1", "#5E81AC"),
             wibox.container.background(wibox.container.margin(
                                            wibox.widget {
                     -- memicon,

@@ -1,5 +1,64 @@
-configuration {
-	theme: ".config/rofi/themes/base16-nord.rasi";
-	font: "SauceCodePro Nerd Font 12";
-	fullscreen: false;
+* {
+  background-color: #2E3440;
+  text-color: #ECEFF4;
+  font: "Sauce Code Pro 12";
+  spacing: 0;
+  width: 712px;
+  height: 360px;
+  border-radius: 0px;
+}
+
+window {
+  border: 2px;
+  border-color: #5E81AC;
+}
+
+inputbar {
+  border: 0 0 0 0;
+  children: [prompt,entry];
+  border-color: #4C566A;
+  border-radius:0px;
+}
+
+prompt {
+  padding: 16px 16px 16px 16px;
+  border-radius:0px;
+  border: 0 0 0 0;
+  border-color: #4C566A;
+  text-color: #81A1C1;
+}
+
+textbox {
+  background-color: #2e343f;
+  border: 0 0 1px 0;
+  border-color: #282C33;
+  padding: 8px 16px;
+  border-radius:0px;
+}
+
+entry {
+  padding: 16px;
+  border-radius:0px;
+  border: 0;
+  text-color: #81A1C1;
+}
+
+listview {
+  cycle: false;
+  margin: 0 0 -1px 0;
+  scrollbar: false;
+  border-radius:0px;
+  border: 0;
+}
+
+element {
+  border: 0;
+  padding: 20px;
+  border-radius:0px;
+}
+
+element selected {
+  background-color: #3B4252;
+  border-radius:0px;
+  border: 0;
 }
