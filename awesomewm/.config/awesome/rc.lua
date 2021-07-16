@@ -447,13 +447,13 @@ globalkeys = mytable.join( -- Take a screenshot
 
     -- ALSA volume control
                  awful.key({altkey}, "Up", function()
-        os.execute(string.format("amixer -q set %s 1%%+",
-                                 beautiful.volume.channel))
+        os.execute(
+            string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
         beautiful.volume.update()
     end, {description = "volume up", group = "hotkeys"}),
                  awful.key({altkey}, "Down", function()
-        os.execute(string.format("amixer -q set %s 1%%-",
-                                 beautiful.volume.channel))
+        os.execute(
+            string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
         beautiful.volume.update()
     end, {description = "volume down", group = "hotkeys"}),
                  awful.key({altkey}, "m", function()
@@ -462,13 +462,13 @@ globalkeys = mytable.join( -- Take a screenshot
         beautiful.volume.update()
     end, {description = "toggle mute", group = "hotkeys"}),
                  awful.key({altkey, "Control"}, "m", function()
-        os.execute(string.format("amixer -q set %s 100%%",
-                                 beautiful.volume.channel))
+        os.execute(
+            string.format("amixer -q set %s 100%%", beautiful.volume.channel))
         beautiful.volume.update()
     end, {description = "volume 100%", group = "hotkeys"}),
                  awful.key({altkey, "Control"}, "0", function()
-        os.execute(string.format("amixer -q set %s 0%%",
-                                 beautiful.volume.channel))
+        os.execute(
+            string.format("amixer -q set %s 0%%", beautiful.volume.channel))
         beautiful.volume.update()
     end, {description = "volume 0%", group = "hotkeys"}), -- MPD control
     awful.key({altkey, "Control"}, "Up", function()
@@ -488,11 +488,8 @@ globalkeys = mytable.join( -- Take a screenshot
         beautiful.mpd.update()
     end, {description = "mpc next", group = "widgets"}),
                  awful.key({altkey}, "0", function()
-        local common = {
-            text = "MPD widget ",
-            position = "top_middle",
-            timeout = 2
-        }
+        local common =
+            {text = "MPD widget ", position = "top_middle", timeout = 2}
         if beautiful.mpd.timer.started then
             beautiful.mpd.timer:stop()
             common.text = common.text .. lain.util.markup.bold("OFF")
@@ -777,6 +774,8 @@ client.connect_signal("unfocus",
 awful.spawn.with_shell(
     "picom --config ~/.config/picom/picom.conf -b --experimental-backends -b")
 awful.spawn.with_shell("nitrogen --restore")
+awful.spawn.with_shell("nm-applet")
+awful.spawn.with_shell("redshift -l 19.0760:72.8777")
 
 -- Small notifications.
 naughty.config.defaults['icon_size'] = 100

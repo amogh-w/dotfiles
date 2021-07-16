@@ -104,6 +104,7 @@ source $ZSH/oh-my-zsh.sh
 SPACESHIP_CHAR_SYMBOL="> "
 SPACESHIP_DOCKER_SHOW=false
 unsetopt PROMPT_SP
+
 export LC_ALL="en_US.UTF-8"
 export TF_FORCE_GPU_ALLOW_GROWTH=true
 export BROWSER=/usr/bin/google-chrome-stable
@@ -117,12 +118,10 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 alias delhist="echo "" > ~/.zsh_history && echo "" > ~/.bash_history"
 
-# Vim Superman
-export PATH="$PATH:$HOME/.vim/plugged/vim-superman/bin"
-
 export VISUAL=vim
 export EDITOR=vim
 
+# Doom Emacs
 export PATH="$PATH:$HOME/.emacs.d/bin"
 
 # >>> conda initialize >>>
@@ -140,8 +139,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Java
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# NVM
+source /usr/share/nvm/init-nvm.sh

@@ -53,6 +53,26 @@ local logout_menu_widget = require("themes.nord.logout-menu-widget.logout-menu")
 -- Spotify
 local spotify = require("themes.nord.spotify-widget.spotify")
 
+-- Battery Widget
+local battery_widget = require("themes.nord.battery-widget")
+
+local BAT0 = battery_widget {
+    ac = "AC",
+    adapter = "BAT1",
+    ac_prefix = "AC: ",
+    battery_prefix = "",
+    percent_colors = {{25, "white"}, {50, "white"}, {999, "white"}},
+    listen = true,
+    timeout = 10,
+    widget_text = "${AC_BAT}${color_on}${percent}%${color_off}",
+    widget_font = "Sauce Code Pro Nerd Font 10",
+    tooltip_text = "Battery ${state}${time_est}\nCapacity: ${capacity_percent}%",
+    alert_threshold = 5,
+    alert_timeout = 0,
+    alert_title = "Low battery !",
+    alert_text = "${AC_BAT}${time_est}"
+}
+
 -- Binary clock
 local binclock = require("themes.powerarrow.binclock") {
     height = dpi(32),
@@ -404,74 +424,73 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             -- wibox.widget.systray(),
             arrow(theme.bg_normal, "#81A1C1"),
-            wibox.container.background(wibox.container.margin(
-                                           wibox.widget {
-                    -- memicon,
-                    make_fa_icon('\u{f0c9} '),
-                    wibox.widget.systray(),
-                    layout = wibox.layout.align.horizontal
-                }, dpi(2), dpi(3)), "#81A1C1"),
+            wibox.container.background(wibox.container.margin(wibox.widget {
+                -- memicon,
+                make_fa_icon('\u{f0c9} '),
+                wibox.widget.systray(),
+                layout = wibox.layout.align.horizontal
+            }, dpi(2), dpi(3)), "#81A1C1"),
             arrow("#81A1C1", "#5E81AC"),
-            wibox.container.background(wibox.container.margin(
-                                           wibox.widget {
-                    -- memicon,
-                    make_fa_icon('\u{f001} '),
-                    spotify({
-                        font = 'Sauce Code Pro 10',
-                        play_icon = '/usr/share/icons/Papirus-Light/24x24/categories/spotify.svg',
-                        pause_icon = '/usr/share/icons/Papirus-Dark/24x24/panel/spotify-indicator.svg'
-                    }),
-                    layout = wibox.layout.align.horizontal
-                }, dpi(2), dpi(3)), "#5E81AC"),
+            wibox.container.background(wibox.container.margin(wibox.widget {
+                -- memicon,
+                make_fa_icon('\u{f001} '),
+                spotify({
+                    font = 'Sauce Code Pro 10',
+                    play_icon = '/usr/share/icons/Papirus-Light/24x24/categories/spotify.svg',
+                    pause_icon = '/usr/share/icons/Papirus-Dark/24x24/panel/spotify-indicator.svg'
+                }),
+                layout = wibox.layout.align.horizontal
+            }, dpi(2), dpi(3)), "#5E81AC"),
             arrow("#5E81AC", "#81A1C1"),
-            wibox.container.background(wibox.container.margin(
-                                           wibox.widget {
-                    -- memicon,
-                    make_fa_icon('\u{f538}'),
-                    mem.widget,
-                    layout = wibox.layout.align.horizontal
-                }, dpi(2), dpi(3)), "#81A1C1"),
+            wibox.container.background(wibox.container.margin(wibox.widget {
+                -- memicon,
+                make_fa_icon('\u{f538}'),
+                mem.widget,
+                layout = wibox.layout.align.horizontal
+            }, dpi(2), dpi(3)), "#81A1C1"),
             arrow("#81A1C1", "#5E81AC"),
-            wibox.container.background(wibox.container.margin(
-                                           wibox.widget {
-                    -- cpuicon,
-                    make_fa_icon('\u{f004}'),
-                    cpu.widget,
-                    layout = wibox.layout.align.horizontal
-                }, dpi(3), dpi(4)), "#5E81AC"),
+            wibox.container.background(wibox.container.margin(wibox.widget {
+                -- cpuicon,
+                make_fa_icon('\u{f004}'),
+                cpu.widget,
+                layout = wibox.layout.align.horizontal
+            }, dpi(3), dpi(4)), "#5E81AC"),
             arrow("#5E81AC", "#81A1C1"),
-            wibox.container.background(wibox.container.margin(
-                                           wibox.widget {
-                    -- tempicon,
-                    make_fa_icon('\u{f2c9}'),
-                    temp.widget,
-                    layout = wibox.layout.align.horizontal
-                }, dpi(4), dpi(4)), "#81A1C1"),
+            wibox.container.background(wibox.container.margin(wibox.widget {
+                -- tempicon,
+                make_fa_icon('\u{f2c9}'),
+                temp.widget,
+                layout = wibox.layout.align.horizontal
+            }, dpi(4), dpi(4)), "#81A1C1"),
             arrow("#81A1C1", "#5E81AC"),
-            wibox.container.background(wibox.container.margin(
-                                           wibox.widget {
-                    nil,
-                    -- neticon,
-                    make_fa_icon('\u{f1eb}'),
-                    net.widget,
-                    layout = wibox.layout.align.horizontal
-                }, dpi(3), dpi(3)), "#5E81AC"),
+            wibox.container.background(wibox.container.margin(wibox.widget {
+                nil,
+                -- neticon,
+                make_fa_icon('\u{f1eb}'),
+                net.widget,
+                layout = wibox.layout.align.horizontal
+            }, dpi(3), dpi(3)), "#5E81AC"),
             arrow("#5E81AC", "#81A1C1"),
-            wibox.container.background(wibox.container.margin(
-                                           wibox.widget {
-                    make_fa_icon('\u{f017}'),
-                    wibox.widget.textclock(),
-                    layout = wibox.layout.align.horizontal
-                }, dpi(4), dpi(8)), "#81A1C1"),
+            wibox.container.background(wibox.container.margin(wibox.widget {
+                make_fa_icon('\u{f242}'),
+                BAT0,
+                layout = wibox.layout.align.horizontal
+            }, dpi(4), dpi(8)), "#81A1C1"),
             arrow("#81A1C1", "#5E81AC"),
+            wibox.container.background(wibox.container.margin(wibox.widget {
+                make_fa_icon('\u{f017}'),
+                wibox.widget.textclock(),
+                layout = wibox.layout.align.horizontal
+            }, dpi(4), dpi(8)), "#5E81AC"),
+            arrow("#5E81AC", "#81A1C1"),
             -- ]]
             wibox.container.background(wibox.container.margin(s.mylayoutbox,
                                                               dpi(4), dpi(1)),
-                                       "#5E81AC"),
+                                       "#81A1C1"),
             wibox.container.background(wibox.container.margin(
                                            logout_menu_widget(), dpi(4), dpi(1)),
-                                       "#5E81AC"),
-            arrow("#5E81AC", "#5E81AC")
+                                       "#81A1C1"),
+            arrow("#81A1C1", "#81A1C1")
 
         }
     }
