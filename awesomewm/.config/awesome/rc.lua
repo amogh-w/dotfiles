@@ -771,8 +771,7 @@ client.connect_signal("unfocus",
 -- }}}
 
 -- Startup apps.
-awful.spawn.with_shell(
-    "picom --config ~/.config/picom/picom.conf -b --experimental-backends -b")
+awful.spawn.with_shell("picom --experimental-backends -b")
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("redshift -l 19.0760:72.8777")
