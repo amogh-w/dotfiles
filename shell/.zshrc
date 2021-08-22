@@ -141,6 +141,9 @@ unset __conda_setup
 
 # Java
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+export PATH="$HOME/Files/jdk-16.0.2+7/bin:$PATH"
 
-# NVM
-source /usr/share/nvm/init-nvm.sh
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
