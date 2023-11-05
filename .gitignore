@@ -1,2 +1,3 @@
 .vscode
+.DS_Store
 jupyter/.jupyter/lab/workspaces
