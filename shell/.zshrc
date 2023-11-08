@@ -103,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # Custom
 SPACESHIP_CHAR_SYMBOL="> "
 SPACESHIP_DOCKER_SHOW=false
-unsetopt PROMPT_SP
+# unsetopt PROMPT_SP
 
 export LC_ALL="en_US.UTF-8"
 # export TF_FORCE_GPU_ALLOW_GROWTH=true
@@ -160,15 +160,16 @@ function killdocker() {
 }
 
 # ids conda
-export CVXOPT_SUITESPARSE_SRC_DIR=/opt/homebrew/opt/suite-sparse
-export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
-export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
+# export CVXOPT_SUITESPARSE_SRC_DIR=/opt/homebrew/opt/suite-sparse
+# export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
+# export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
 
 # perl
-#PATH="/Users/amogh/perl5/bin${PATH:+:${PATH}}"; export PATH;
-#PERL5LIB="/Users/amogh/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-#PERL_LOCAL_LIB_ROOT="/Users/amogh/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-#PERL_MB_OPT="--install_base \"/Users/amogh/perl5\""; export PERL_MB_OPT;
-#PERL_MM_OPT="INSTALL_BASE=/Users/amogh/perl5"; export PERL_MM_OPT;
+# PATH="/Users/amogh/perl5/bin${PATH:+:${PATH}}"; export PATH;
+# PERL5LIB="/Users/amogh/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+# PERL_LOCAL_LIB_ROOT="/Users/amogh/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+# PERL_MB_OPT="--install_base \"/Users/amogh/perl5\""; export PERL_MB_OPT;
+# PERL_MM_OPT="INSTALL_BASE=/Users/amogh/perl5"; export PERL_MM_OPT;
 
-export CPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk/System/Library/Perl/5.28/darwin-thread-multi-2level/CORE:$CPATH
+# cpath
+# export CPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk/System/Library/Perl/5.28/darwin-thread-multi-2level/CORE:$CPATH
