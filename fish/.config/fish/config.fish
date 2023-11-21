@@ -20,3 +20,6 @@ starship init fish | source
 
 # disable greeting
 set -g fish_greeting
+
+# disable new line
+set SPACEFISH_PROMPT_ADD_NEWLINE false

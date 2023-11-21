@@ -1,0 +1,12 @@
+{
+    "fontFamily": "CaskaydiaCove Nerd Font",
+    "fontSize": 16,
+    "lineHeight": 1,
+    "theme": "inherit",
+    "screenReaderMode": false,
+    "scrollback": 1000,
+    "shutdownOnClose": false,
+    "closeOnExit": true,
+    "pasteWithCtrlV": true,
+    "macOptionIsMeta": false
+}

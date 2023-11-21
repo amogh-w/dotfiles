@@ -1,0 +1,9 @@
+# Use system trash can instead of permanently removing files
+use_trash = true
+
+[display]
+# Show hidden files
+show_hidden = true
+
+[cmd_aliases]
+q = "quit"
