@@ -23,3 +23,6 @@ set -g fish_greeting
 
 # disable new line
 set SPACEFISH_PROMPT_ADD_NEWLINE false
+
+# aliases
+alias startLatex="conda activate latex && latexocr"
