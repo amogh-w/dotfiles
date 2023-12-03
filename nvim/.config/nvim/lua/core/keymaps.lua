@@ -18,10 +18,10 @@ map("n", "<M-h>", "^", "Go to beginning of line")
 map("n", "<M-l>", "$", "Go to end of line")
 
 -- Better window navigation
-map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
-map("n", "<C-j>", "<C-w><C-j>", "Navigate windows down")
-map("n", "<C-k>", "<C-w><C-k>", "Navigate windows up")
-map("n", "<C-l>", "<C-w><C-l>", "Navigate windows to the right")
+-- map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
+-- map("n", "<C-j>", "<C-w><C-j>", "Navigate windows down")
+-- map("n", "<C-k>", "<C-w><C-k>", "Navigate windows up")
+-- map("n", "<C-l>", "<C-w><C-l>", "Navigate windows to the right")
 
 -- Move with shift-arrows
 map("n", "<S-Left>", "<C-w><S-h>", "Move window to the left")
@@ -60,3 +60,18 @@ end, "Toggle between light and dark themes")
 
 -- Clear after search
 map("n", "<leader>ur", "<cmd>nohl<cr>", "Clear highlights")
+
+-- VSCode
+
+if vim.g.vscode then
+	map("n", "<leader>", "<cmd>call VSCodeNotify('whichkey.show')<cr>", "Bruh")
+	map("n", "<C-h>", "<cmd>call VSCodeNotify('workbench.action.navigateLeft')<cr>", "Navigate windows to the left")
+	map("n", "<C-j>", "<cmd>call VSCodeNotify('workbench.action.navigateDown')<cr>", "Navigate windows down")
+	map("n", "<C-k>", "<cmd>call VSCodeNotify('workbench.action.navigateUp')<cr>", "Navigate windows up")
+	map("n", "<C-l>", "<cmd>call VSCodeNotify('workbench.action.navigateRight')<cr>", "Navigate windows to the right")
+else
+	map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
+	map("n", "<C-j>", "<C-w><C-j>", "Navigate windows down")
+	map("n", "<C-k>", "<C-w><C-k>", "Navigate windows up")
+	map("n", "<C-l>", "<C-w><C-l>", "Navigate windows to the right")
+end
