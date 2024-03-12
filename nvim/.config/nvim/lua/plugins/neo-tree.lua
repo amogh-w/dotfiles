@@ -10,7 +10,13 @@ return {
 		},
 		cond = not vim.g.vscode,
 		config = function()
-			require("neo-tree").setup()
+			require("neo-tree").setup({
+				filesystem = {
+					filtered_items = {
+						visible = true
+					},
+				},
+			})
 			require("helpers.keys").map(
 				{ "n", "v" },
 				"<leader>e",
