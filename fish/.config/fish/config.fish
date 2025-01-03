@@ -22,7 +22,11 @@ starship init fish | source
 set -g fish_greeting
 
 # disable new line
-set SPACEFISH_PROMPT_ADD_NEWLINE false
+# set SPACEFISH_PROMPT_ADD_NEWLINE false
 
 # aliases
 alias startLatex="conda activate latex && latexocr"
+
+# exa
+command -q exa; and alias la="eza -abghl --git --color=automatic"
+command -q exa; and alias ll="eza -bghl --git --color=automatic"
