@@ -16,6 +16,6 @@ local function get_if_available(name, opts)
 end
 
 -- Uncomment the colorscheme to use
-local colorscheme = get_if_available("catppuccin-macchiato")
+local colorscheme = get_if_available("catppuccin-mocha")
 
 return colorscheme
