@@ -26,7 +26,9 @@ set -g fish_greeting
 
 # aliases
 alias startLatex="conda activate latex && latexocr"
+alias spotifyFix="spicetify update && spicetify restore backup apply"
 
 # exa
 command -q exa; and alias la="eza -abghl --git --color=automatic"
 command -q exa; and alias ll="eza -bghl --git --color=automatic"
+fish_add_path /Users/amogh/.spicetify

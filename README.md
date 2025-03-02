@@ -1,4 +1,16 @@
-# my i3 rice, [more details here](https://www.reddit.com/r/unixporn/comments/gk7s94/i3gaps_nord_genesis_evangelion_rice_and_my_daily/)
+# My current MacOS setup
+
+![1](/Screenshots/6.png?raw=true "MacOS")
+
+## Resources:  
+
+- [fish shell](https://fishshell.com/) - Smart and user-friendly command-line shell  
+- [Kitty](https://sw.kovidgoyal.net/kitty/) - Fast, feature-rich, and GPU-accelerated terminal emulator  
+- [Neovim](https://neovim.io/) - Modernized and extensible Vim-based text editor for quick terminal edits  
+- [Neovim + VSCode](https://github.com/vscode-neovim/vscode-neovim) - Perfect coding setup with Neovim integration in VSCode for enhanced productivity  
+
+
+# My old i3 rice, [reddit post here](https://www.reddit.com/r/unixporn/comments/gk7s94/i3gaps_nord_genesis_evangelion_rice_and_my_daily/).
 
 ![1](/Screenshots/5.png?raw=true "Merged")
 
