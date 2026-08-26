@@ -89,8 +89,7 @@ claude = [
   [
     "state_icon",
     "tab",
-    { token = "agent", fg = "#c47f6a", bold = true, dim = false },
-    { token = "$quota_context", fg = "#9b8fd8", bold = true, dim = false },
+    { token = "$quota_provider_model", fg = "#c47f6a", bold = true, dim = false },
   ],
   [
     { token = "$quota_topic", dim = false },
@@ -99,6 +98,9 @@ claude = [
     { token = "$quota_cache", fg = "#6fb5b7", bold = true, dim = false },
     { token = "$quota_cache_ttl", fg = "#cdaa65", bold = true, dim = false },
     { token = "$quota_error", fg = "#ca6470", bold = true, dim = false },
+  ],
+  [
+    { token = "$quota_context", fg = "#9b8fd8", bold = true, dim = false },
   ],
   [
     { token = "$quota_5h_normal", fg = "#84b084", bold = true, dim = false },
