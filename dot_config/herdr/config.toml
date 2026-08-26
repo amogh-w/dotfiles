@@ -1,0 +1,189 @@
+# https://herdr.dev/docs/configuration/
+
+onboarding = false
+
+# ── terminal ──────────────────────────────────────────────────────────
+[terminal]
+default_shell = "/opt/homebrew/bin/fish"
+
+# ── keys ──────────────────────────────────────────────────────────────
+[keys]
+prefix = "ctrl+b"
+
+[[keys.command]]
+key = "prefix+shift+r"
+type = "plugin_action"
+command = "herdr-agent-quota.refresh"
+description = "refresh all agent quotas"
+
+# ── theme ─────────────────────────────────────────────────────────────
+[theme]
+name = "catppuccin"
+auto_switch = true
+#light_name = "catppuccin-latte"
+#dark_name = "catppuccin"
+
+# ── theme.custom ──────────────────────────────────────────────────────
+# VS Code Dark Modern's explorer/editor/selection layout, remapped onto
+# catppuccin mocha tones, lavender accent
+[theme.custom]
+# sidebar_bg = "#181825"       # mocha mantle — lighter than crust, still recessed vs. the panel
+# panel_bg = "#1e1e2e"         # mocha base — pane/editor area
+# active_row_bg = "#313244"    # mocha surface0 — hovered/active sidebar row
+# selection_bg = "#45475a"     # mocha surface1 — text selection
+accent = "#b4befe"           # mocha lavender — pane borders, active tab, highlights
+
+# ── ui ────────────────────────────────────────────────────────────────
+[ui]
+# visible pane outlines — explicit since the defaults weren't showing up
+pane_borders = true
+pane_outer_borders = true
+pane_gaps = true
+accent = "#b4befe"
+
+tab_bar_right = [
+  { type = "zoom" },
+  { type = "command", command = "~/.config/herdr/status.sh", interval_seconds = 60, timeout_seconds = 2 },
+  { type = "hostname" },
+  { type = "datetime", format = "%H:%M" },
+]
+tab_bar_right_separator = " · "
+
+agent_panel_sort = "spaces"
+
+# ── ui.sidebar ────────────────────────────────────────────────────────
+[ui.sidebar]
+
+# ── ui.sidebar.agents (default layout, herdr-agent-quota plugin) ───────
+[ui.sidebar.agents]
+row_gap = 1 # herdr-agent-quota
+rows = [
+  [
+    "state_icon",
+    "tab",
+    { token = "$quota_provider", bold = true, dim = false },
+    { token = "$quota_context", fg = "#9b8fd8", bold = true, dim = false },
+  ],
+  [
+    { token = "$quota_topic", dim = false },
+  ],
+  [
+    { token = "$quota_cache", fg = "#6fb5b7", bold = true, dim = false },
+    { token = "$quota_cache_ttl", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_error", fg = "#ca6470", bold = true, dim = false },
+  ],
+  [
+    { token = "$quota_5h_normal", fg = "#84b084", bold = true, dim = false },
+    { token = "$quota_5h_warning", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_5h_danger", fg = "#ca6470", bold = true, dim = false },
+    { token = "$quota_week_normal", fg = "#84b084", bold = true, dim = false },
+    { token = "$quota_week_warning", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_week_danger", fg = "#ca6470", bold = true, dim = false },
+  ],
+]
+
+# ── ui.sidebar.agents.rows_by_agent (per-agent color overrides) ────────
+[ui.sidebar.agents.rows_by_agent]
+
+claude = [
+  [
+    "state_icon",
+    "tab",
+    { token = "agent", fg = "#c47f6a", bold = true, dim = false },
+    { token = "$quota_context", fg = "#9b8fd8", bold = true, dim = false },
+  ],
+  [
+    { token = "$quota_topic", dim = false },
+  ],
+  [
+    { token = "$quota_cache", fg = "#6fb5b7", bold = true, dim = false },
+    { token = "$quota_cache_ttl", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_error", fg = "#ca6470", bold = true, dim = false },
+  ],
+  [
+    { token = "$quota_5h_normal", fg = "#84b084", bold = true, dim = false },
+    { token = "$quota_5h_warning", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_5h_danger", fg = "#ca6470", bold = true, dim = false },
+    { token = "$quota_week_normal", fg = "#84b084", bold = true, dim = false },
+    { token = "$quota_week_warning", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_week_danger", fg = "#ca6470", bold = true, dim = false },
+  ],
+] # herdr-agent-quota-provider
+
+codex = [
+  [
+    "state_icon",
+    "tab",
+    { token = "agent", fg = "#7998b7", bold = true, dim = false },
+    { token = "$quota_context", fg = "#9b8fd8", bold = true, dim = false },
+  ],
+  [
+    { token = "$quota_topic", dim = false },
+  ],
+  [
+    { token = "$quota_cache", fg = "#6fb5b7", bold = true, dim = false },
+    { token = "$quota_cache_ttl", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_error", fg = "#ca6470", bold = true, dim = false },
+  ],
+  [
+    { token = "$quota_5h_normal", fg = "#84b084", bold = true, dim = false },
+    { token = "$quota_5h_warning", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_5h_danger", fg = "#ca6470", bold = true, dim = false },
+    { token = "$quota_week_normal", fg = "#84b084", bold = true, dim = false },
+    { token = "$quota_week_warning", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_week_danger", fg = "#ca6470", bold = true, dim = false },
+  ],
+] # herdr-agent-quota-provider
+
+grok = [
+  [
+    "state_icon",
+    "tab",
+    { token = "agent", fg = "#acb4c3", bold = true, dim = false },
+    { token = "$quota_context", fg = "#9b8fd8", bold = true, dim = false },
+  ],
+  [
+    { token = "$quota_topic", dim = false },
+  ],
+  [
+    { token = "$quota_cache", fg = "#6fb5b7", bold = true, dim = false },
+    { token = "$quota_cache_ttl", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_error", fg = "#ca6470", bold = true, dim = false },
+  ],
+  [
+    { token = "$quota_5h_normal", fg = "#84b084", bold = true, dim = false },
+    { token = "$quota_5h_warning", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_5h_danger", fg = "#ca6470", bold = true, dim = false },
+    { token = "$quota_week_normal", fg = "#84b084", bold = true, dim = false },
+    { token = "$quota_week_warning", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_week_danger", fg = "#ca6470", bold = true, dim = false },
+  ],
+] # herdr-agent-quota-provider
+
+agy = [
+  [
+    "state_icon",
+    "tab",
+    { token = "agent", fg = "#84b0af", bold = true, dim = false },
+    { token = "$quota_context", fg = "#9b8fd8", bold = true, dim = false },
+  ],
+  [
+    { token = "$quota_topic", dim = false },
+  ],
+  [
+    { token = "$quota_cache", fg = "#6fb5b7", bold = true, dim = false },
+    { token = "$quota_cache_ttl", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_error", fg = "#ca6470", bold = true, dim = false },
+  ],
+  [
+    { token = "$quota_5h_normal", fg = "#84b084", bold = true, dim = false },
+    { token = "$quota_5h_warning", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_5h_danger", fg = "#ca6470", bold = true, dim = false },
+    { token = "$quota_week_normal", fg = "#84b084", bold = true, dim = false },
+    { token = "$quota_week_warning", fg = "#cdaa65", bold = true, dim = false },
+    { token = "$quota_week_danger", fg = "#ca6470", bold = true, dim = false },
+  ],
+] # herdr-agent-quota-provider
+
+[ui.toast]
+delivery = "system"

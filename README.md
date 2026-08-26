@@ -1,3 +1,6 @@
+Managed with [chezmoi](https://www.chezmoi.io/). This repo is the chezmoi source directory — clone it
+to `~/.local/share/chezmoi` (or `chezmoi init --apply <this-repo>`) and run `chezmoi apply` to deploy.
+
 # My current MacOS setup
 
 ![1](/Screenshots/6.png?raw=true "MacOS")

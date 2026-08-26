@@ -2,6 +2,6 @@
 	name = Amogh Warkhandkar
 	email = amoghw2025@gmail.com
 [core]
-	excludesfile = /Users/amogh/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [credential]
 	helper = osxkeychain

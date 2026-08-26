@@ -2,6 +2,7 @@ return {
     {
         'phaazon/hop.nvim',
         branch = 'v2',
+        enabled = false,
         config = function()
             require('hop').setup()
             require("helpers.keys").map(

@@ -1,0 +1,27 @@
+# Repo docs/assets, not deployable dotfiles.
+README.md
+CLAUDE.md
+CHEZMOI.md
+SETUP.md
+Screenshots
+Wallpapers
+
+# Not yet reviewed for deployment.
+.doom.d
+.jupyter
+
+# Legacy Linux i3 rice, still in pre-chezmoi layout — not deployed until migrated.
+alacritty
+awesomewm
+compton
+dunst
+gtk3
+i3
+i3blocks
+nitrogen
+nvimbackup
+optimus-manager
+picom
+polybar
+rofi
+xresources
