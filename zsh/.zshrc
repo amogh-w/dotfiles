@@ -173,3 +173,6 @@ function killdocker() {
 
 # cpath
 # export CPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk/System/Library/Perl/5.28/darwin-thread-multi-2level/CORE:$CPATH
+# >>> deepseek-harness dsh >>>
+export PATH="$HOME/.local/bin:$PATH"
+# <<< deepseek-harness dsh <<<

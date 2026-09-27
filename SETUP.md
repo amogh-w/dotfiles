@@ -2,42 +2,44 @@
 
 Situations and the exact commands to run. Assumes macOS with Homebrew.
 
-## 1. Install chezmoi, clone this repo to ~/.dotfiles, and point chezmoi at it
-
-The chezmoi source lives at `~/.dotfiles`, not the default `~/.local/share/chezmoi` — clone it
-there directly, then symlink chezmoi's expected source path to it:
+## 1. Install stow, clone this repo to ~/.dotfiles, and symlink everything in
 
 ```sh
-brew install chezmoi
+brew install stow
 git clone https://github.com/amogh-w/dotfiles.git ~/.dotfiles
-ln -s ~/.dotfiles ~/.local/share/chezmoi
-chezmoi init --apply
+cd ~/.dotfiles
+stow -t ~ bash zsh git tmux vim kitty nvim ranger zathura joshuto
+stow --no-folding -t ~ fish herdr
 ```
 
-`chezmoi init` (no URL, since the source is already in place) and `--apply` deploys every
-currently-enabled dotfile into `$HOME`. `dot_gitconfig` has git name/email hardcoded directly —
-edit it in the source tree if those ever need to change.
+That symlinks every active package into `$HOME` (e.g. `fish/.config/fish/config.fish` →
+`~/.config/fish/config.fish`). `git/.gitconfig` has git name/email hardcoded directly — edit it in
+the source tree if those ever need to change. `fish` and `herdr` use `--no-folding` because those
+apps write runtime state (fish's `fish_variables`, herdr's logs/lockfile/sockets) into the same
+directory as their config — see [STOW.md](STOW.md) for why that matters.
 
-## 2. Only some apps deploy by default
+## 2. Only some packages are stowed by default
 
-`.chezmoiignore` is set up as an explicit allowlist — apps get added to it one at a time as
-they're reviewed, not all at once. Check what actually deployed:
+`doom/` and `jupyter/` live in the repo but aren't in the `stow` command above — same "not yet
+reviewed for deployment" status they had before. Check what's actually symlinked:
 
 ```sh
-chezmoi managed
+ls -la ~/.bashrc ~/.config/fish ~/.doom.d ~/.jupyter
 ```
 
-If an app you expect is missing, it just hasn't been re-enabled in `.chezmoiignore` yet. Edit
-that file, remove its ignore line, then:
+A path pointing back into `~/.dotfiles/...` is stowed; a real file/dir is not. To bring one in:
 
 ```sh
-chezmoi apply
+stow -t ~ doom
 ```
+
+If a live file already exists at that path and isn't a symlink, stow will refuse — see
+[STOW.md](STOW.md) for the `--adopt` / manual-remove options.
 
 ## 3. Install the actual applications
 
-chezmoi only manages *config files* — it doesn't install the apps themselves. Install what you
-need via Homebrew:
+Stow only manages *config files* — it doesn't install the apps themselves. Install what you need
+via Homebrew:
 
 ```sh
 brew install fish kitty neovim ranger joshuto zathura tmux
@@ -54,7 +56,7 @@ chsh -s /opt/homebrew/bin/fish
 
 ## 4. Fish plugins (fisher)
 
-`dot_config/fish/fish_plugins` lists the plugins but doesn't install them automatically. After
+`fish/.config/fish/fish_plugins` lists the plugins but doesn't install them automatically. After
 fish is your shell:
 
 ```fish
@@ -88,7 +90,7 @@ Wait for the plugin install to finish, then quit and reopen.
 ### Resetting neovim (clean reinstall)
 
 If plugins get into a bad state, wipe nvim's installed plugins/state and let lazy.nvim reinstall
-from scratch. This only clears data/state/cache — `~/.config/nvim` (chezmoi-managed config) is
+from scratch. This only clears data/state/cache — `~/.config/nvim` (stow-symlinked to the repo) is
 untouched:
 
 ```sh
@@ -98,9 +100,9 @@ nvim
 
 ## 6. herdr plugins
 
-The `herdr-agent-quota` plugin referenced in `dot_config/herdr/config.toml` is **not**
-auto-installed — it was deliberately left out of chezmoi because its manifest
-(`~/.config/herdr/plugins.json`) points at a local dev checkout path specific to this machine.
+The `herdr-agent-quota` plugin referenced in `herdr/.config/herdr/config.toml` is **not**
+auto-installed — its manifest (`~/.config/herdr/plugins.json`) points at a local dev checkout path
+specific to this machine, so it's deliberately left out of the repo.
 
 Clone and register it manually:
 
@@ -115,11 +117,12 @@ method if one now exists.
 ## 7. Verify everything actually matches
 
 ```sh
-chezmoi diff      # should be empty — if not, something didn't apply cleanly
-chezmoi status
+stow -n -v -t ~ bash zsh git tmux vim fish kitty nvim ranger zathura joshuto herdr
 ```
+
+A dry run with no `LINK:`/`WARNING:` output for a package means it's already correctly stowed.
 
 ## Common follow-up commands
 
-See [CHEZMOI.md](CHEZMOI.md) for the day-to-day command reference (editing files, re-adding
-changes made outside chezmoi, adding new dotfiles, etc.).
+See [STOW.md](STOW.md) for the day-to-day command reference (editing files — no apply step needed,
+adding new dotfiles, unstow/restow, resolving conflicts, etc.).
