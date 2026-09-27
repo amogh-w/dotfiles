@@ -56,3 +56,8 @@ fish_add_path /Users/amogh/.antigravity/antigravity/bin
 
 # Added by Antigravity CLI installer
 set -gx PATH "/Users/amogh/.local/bin" $PATH
+
+# herdr-automatic-rename: live tab naming hook
+for _f in $HOME/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.fish
+    test -r "$_f"; and source "$_f"; and break
+end
