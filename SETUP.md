@@ -10,13 +10,35 @@ git clone https://github.com/amogh-w/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 stow -t ~ bash zsh git tmux vim kitty nvim ranger zathura joshuto
 stow --no-folding -t ~ fish herdr
+mkdir -p ~/.claude/skills && stow -t ~ claude
 ```
 
 That symlinks every active package into `$HOME` (e.g. `fish/.config/fish/config.fish` →
 `~/.config/fish/config.fish`). `git/.gitconfig` has git name/email hardcoded directly — edit it in
 the source tree if those ever need to change. `fish` and `herdr` use `--no-folding` because those
 apps write runtime state (fish's `fish_variables`, herdr's logs/lockfile/sockets) into the same
-directory as their config — see [STOW.md](STOW.md) for why that matters.
+directory as their config — see [STOW.md](STOW.md) for why that matters. `claude` needs
+`~/.claude/skills` to exist first so only the skills get symlinked, not all of `~/.claude` (see
+[Claude skills](STOW.md#claude-skills)).
+
+### Windows (Claude skills only)
+
+Stow isn't available on Windows, so only the Claude skills get linked, using directory junctions
+(no admin rights needed). From PowerShell:
+
+```powershell
+git clone https://github.com/amogh-w/dotfiles.git "$HOME\.dotfiles"
+New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
+Get-ChildItem "$HOME\.dotfiles\claude\.claude\skills" -Directory | ForEach-Object {
+  $dest = "$HOME\.claude\skills\$($_.Name)"
+  if (-not (Test-Path $dest)) { New-Item -ItemType Junction -Path $dest -Target $_.FullName }
+}
+```
+
+Re-run the `Get-ChildItem ...` loop after adding a new skill to the repo. To unlink a skill, run
+`(Get-Item "$HOME\.claude\skills\<name>").Delete()`. That removes only the junction, not the
+repo folder. Avoid `Remove-Item -Recurse` on a junction, because in Windows PowerShell 5.1 it can
+delete the real files it points to.
 
 ## 2. Only some packages are stowed by default
 
@@ -117,7 +139,7 @@ method if one now exists.
 ## 7. Verify everything actually matches
 
 ```sh
-stow -n -v -t ~ bash zsh git tmux vim fish kitty nvim ranger zathura joshuto herdr
+stow -n -v -t ~ bash zsh git tmux vim fish kitty nvim ranger zathura joshuto herdr claude
 ```
 
 A dry run with no `LINK:`/`WARNING:` output for a package means it's already correctly stowed.

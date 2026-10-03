@@ -19,8 +19,12 @@ source/deploy step — edit a file in the repo and the live symlink picks up the
 
 The repo currently spans two eras of setup:
 - **Active (macOS, stowed)**: `bash`, `zsh`, `git`, `tmux`, `vim`, `fish`, `kitty`, `nvim`, `ranger`,
-  `zathura`, `joshuto`, `herdr` — each symlinked into `$HOME` via `stow -t ~ <package>`. These are what
+  `zathura`, `joshuto`, `herdr`, `claude` — each symlinked into `$HOME` via `stow -t ~ <package>`
+  (`claude` holds Claude Code skills; create `~/.claude/skills` before stowing it, see STOW.md). These are what
   the README and recent commit history focus on.
+- **Windows**: only the `claude` package is used. There's no stow, so each skill folder under
+  `claude/.claude/skills/` is linked into `%USERPROFILE%\.claude\skills\` with a directory junction
+  (PowerShell snippet in [STOW.md](STOW.md#claude-skills)). Re-run it after adding a new skill.
 - **Dormant**: `doom/` (`.doom.d`) and `jupyter/` (`.jupyter`) exist in the repo in the same
   package layout but are **not stowed** — not yet reviewed for deployment. The live `~/.doom.d` and
   `~/.jupyter` are real, independent files untouched by this repo until someone runs `stow -t ~ doom`

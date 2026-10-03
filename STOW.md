@@ -15,14 +15,14 @@ source/dest translation step like chezmoi had.
 | Adding a brand-new dotfile that isn't tracked yet | Move the real file into `~/.dotfiles/<package>/<same path relative to $HOME>`, then `stow -t ~ <package>` | Puts it under version control and symlinks it back into place in one motion |
 | A target file already exists and isn't a symlink (stow refuses) | Either `rm` the live file first (if the repo copy is authoritative) or `stow --adopt -t ~ <package>` (pulls the live file's content into the repo, overwriting the repo copy) | `--adopt` is the safe move when the live file has drifted and you want to keep what's on disk |
 | Want to add a whole new package for an app not yet tracked | `mkdir -p ~/.dotfiles/newapp/.config/newapp`, put its config there, `cd ~/.dotfiles && stow -t ~ newapp` | Same pattern as every other package — path under the package dir mirrors the path under `$HOME` |
-| Setting up a new machine | `brew install stow`, `git clone <repo> ~/.dotfiles`, `cd ~/.dotfiles`, `stow -t ~ bash zsh git tmux vim kitty nvim ranger zathura joshuto`, `stow --no-folding -t ~ fish herdr` | Clones the repo and symlinks every active package into `$HOME`; `fish`/`herdr` need `--no-folding` (see below) |
+| Setting up a new machine | `brew install stow`, `git clone <repo> ~/.dotfiles`, `cd ~/.dotfiles`, `stow -t ~ bash zsh git tmux vim kitty nvim ranger zathura joshuto`, `stow --no-folding -t ~ fish herdr`, `mkdir -p ~/.claude/skills && stow -t ~ claude` | Clones the repo and symlinks every active package into `$HOME`; `fish`/`herdr` need `--no-folding`, `claude` needs `~/.claude/skills` created first (see below) |
 | Check what's actually symlinked from the repo | `find ~/.dotfiles -maxdepth 1 -type d ! -name .git` then `ls -la ~/.bashrc ~/.config/fish` etc. | Stow keeps no manifest of its own — a symlink pointing back into `~/.dotfiles/<package>/...` is confirmation it's active |
 | Want to undo a bad edit | `cd ~/.dotfiles && git log --oneline -- <path>` then `git checkout <commit> -- <path>` | No separate deploy step needed — the live symlink picks up the reverted content immediately |
 
 ## Active packages
 
-`bash`, `zsh`, `git`, `tmux`, `vim`, `fish`, `kitty`, `nvim`, `ranger`, `zathura`, `joshuto`, `herdr` —
-each stowed into `$HOME`.
+`bash`, `zsh`, `git`, `tmux`, `vim`, `fish`, `kitty`, `nvim`, `ranger`, `zathura`, `joshuto`, `herdr`,
+`claude` — each stowed into `$HOME`.
 
 ## Runtime/generated files inside a stowed package
 
@@ -37,6 +37,32 @@ file individually and leaves `~/.config/fish` / `~/.config/herdr` as real direct
 runtime files stay local to `$HOME` and only the files actually tracked in the repo are symlinks. This
 repo already stows `fish` and `herdr` with `--no-folding` for exactly this reason — if you add a new
 package where the app mixes config and runtime files in the same directory, do the same.
+
+## Claude skills
+
+`claude/.claude/skills/<name>/` holds personal Claude Code skills. `~/.claude` is full of local
+state (credentials, history, sessions), so it must never become a symlink into the repo. Always make
+sure `~/.claude/skills` exists as a real directory before stowing:
+
+```sh
+mkdir -p ~/.claude/skills && stow -t ~ claude
+```
+
+Stow then links each skill folder on its own (`~/.claude/skills/local-pdf-translator` →
+`~/.dotfiles/claude/.claude/skills/local-pdf-translator`). Edits inside a skill are live right away.
+After adding a new skill folder to the repo, run `stow -R -t ~ claude` to link it. Skills you create
+directly in `~/.claude/skills` stay local until you move them into the repo and restow.
+
+On Windows (no stow), link each skill with a directory junction from PowerShell, which needs no admin
+rights:
+
+```powershell
+New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
+Get-ChildItem "$HOME\.dotfiles\claude\.claude\skills" -Directory | ForEach-Object {
+  $dest = "$HOME\.claude\skills\$($_.Name)"
+  if (-not (Test-Path $dest)) { New-Item -ItemType Junction -Path $dest -Target $_.FullName }
+}
+```
 
 ## Dormant packages
 
