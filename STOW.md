@@ -22,7 +22,7 @@ source/dest translation step like chezmoi had.
 ## Active packages
 
 `bash`, `zsh`, `git`, `tmux`, `vim`, `fish`, `kitty`, `nvim`, `ranger`, `zathura`, `joshuto`, `herdr`,
-`claude` — each stowed into `$HOME`.
+`claude`, `ccstatusline` — each stowed into `$HOME`.
 
 ## Runtime/generated files inside a stowed package
 
@@ -37,6 +37,11 @@ file individually and leaves `~/.config/fish` / `~/.config/herdr` as real direct
 runtime files stay local to `$HOME` and only the files actually tracked in the repo are symlinks. This
 repo already stows `fish` and `herdr` with `--no-folding` for exactly this reason — if you add a new
 package where the app mixes config and runtime files in the same directory, do the same.
+
+`herdr/.config/herdr/config.toml` itself is tracked and fine to commit as-is — the sidebar rows and
+keybindings herdr plugins write there are portable (no per-install hashes). Herdr plugins themselves
+aren't tracked by this repo though; see the README's "Herdr plugins" section for what's installed and
+how to reinstall each one on a new machine.
 
 ## Claude skills
 
@@ -63,6 +68,27 @@ Get-ChildItem "$HOME\.dotfiles\claude\.claude\skills" -Directory | ForEach-Objec
   if (-not (Test-Path $dest)) { New-Item -ItemType Junction -Path $dest -Target $_.FullName }
 }
 ```
+
+## Claude settings.json is deliberately not tracked
+
+`~/.claude/settings.json` is a real, untracked file — it is **not** in `claude/.claude/` and never
+gets stowed, on purpose. It holds preferences (`model`, `theme`, `effortLevel`, `enabledPlugins`,
+`agentPushNotifEnabled`) that would otherwise be fine to track, but it also tends to accumulate a
+`statusLine` entry that isn't portable:
+
+- A herdr plugin's `statusLine.command` points at that plugin's installed path, e.g.
+  `~/.config/herdr/plugins/github/<plugin>-<hash>/target/release/<plugin>`. `herdr plugin install`
+  generates a fresh hash per machine, so a committed path breaks immediately on a new machine.
+- Only one `statusLine` command can be active at a time. Installing any status-line tool (a herdr
+  plugin like [herdr-pacer](https://github.com/amali01/herdr-pacer), or a standalone one like
+  [ccstatusline](https://github.com/sirmalloc/ccstatusline)) overwrites whatever is already there
+  rather than merging with it — so tool A's setup silently breaks tool B's wrapper unless they're
+  chained in a script yourself.
+
+Keeping the whole file untracked sidesteps both problems — whichever status-line tool you're running
+rewrites `statusLine` locally, and nothing about that ever needs to sync through this repo. If you
+want the other preferences in that file to travel with you, copy them by hand into a new
+`claude/.claude/settings.json` and stow it — just don't carry `statusLine` along when you do.
 
 ## Dormant packages
 
