@@ -19,9 +19,9 @@ source/deploy step — edit a file in the repo and the live symlink picks up the
 
 The repo currently spans two eras of setup:
 - **Active (macOS, stowed)**: `bash`, `zsh`, `git`, `tmux`, `vim`, `fish`, `kitty`, `nvim`, `ranger`,
-  `zathura`, `joshuto`, `herdr`, `claude` — each symlinked into `$HOME` via `stow -t ~ <package>`
-  (`claude` holds Claude Code skills; create `~/.claude/skills` before stowing it, see STOW.md). These are what
-  the README and recent commit history focus on.
+  `zathura`, `joshuto`, `herdr`, `claude`, `ccstatusline` — each symlinked into `$HOME` via
+  `stow -t ~ <package>` (`claude` holds Claude Code skills; create `~/.claude/skills` before stowing
+  it, see STOW.md). These are what the README and recent commit history focus on.
 - **Windows**: only the `claude` package is used. There's no stow, so each skill folder under
   `claude/.claude/skills/` is linked into `%USERPROFILE%\.claude\skills\` with a directory junction
   (PowerShell snippet in [STOW.md](STOW.md#claude-skills)). Re-run it after adding a new skill.

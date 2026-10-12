@@ -8,7 +8,7 @@ Situations and the exact commands to run. Assumes macOS with Homebrew.
 brew install stow
 git clone https://github.com/amogh-w/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-stow -t ~ bash zsh git tmux vim kitty nvim ranger zathura joshuto
+stow -t ~ bash zsh git tmux vim kitty nvim ranger zathura joshuto ccstatusline
 stow --no-folding -t ~ fish herdr
 mkdir -p ~/.claude/skills && stow -t ~ claude
 ```
@@ -122,24 +122,26 @@ nvim
 
 ## 6. herdr plugins
 
-The `herdr-agent-quota` plugin referenced in `herdr/.config/herdr/config.toml` is **not**
-auto-installed — its manifest (`~/.config/herdr/plugins.json`) points at a local dev checkout path
-specific to this machine, so it's deliberately left out of the repo.
-
-Clone and register it manually:
+Plugins aren't auto-installed — only the config fragments their setup writes into
+`herdr/.config/herdr/config.toml` are tracked by this repo. See the README's "Herdr plugins" section
+for the full list and what each one does; reinstall each with its own `herdr plugin install ...`
+command, then re-run its setup/action to regenerate that config:
 
 ```sh
-git clone https://github.com/levi-qiao/herdr-agent-quota.git ~/dev/herdr-agent-quota
+herdr plugin install speardragon/herdr-plugin-manager
+herdr plugin install qu8n/herdr-automatic-rename   # plus its shell hook, see its own README
+herdr plugin install amali01/herdr-pacer
+herdr plugin action invoke herdr-pacer.setup
 ```
 
-Then register the local checkout with herdr per the plugin's own install instructions (check its
-README for the exact `plugins.json` entry format), or check `herdr.dev` for a public distribution
-method if one now exists.
+`herdr-pacer.setup` sets `statusLine` in `~/.claude/settings.json` — if you're also using
+ccstatusline, point `statusLine` at ccstatusline first, then run `herdr-pacer.setup` again to wrap
+it (see the README's "ccstatusline" section for why the order matters).
 
 ## 7. Verify everything actually matches
 
 ```sh
-stow -n -v -t ~ bash zsh git tmux vim fish kitty nvim ranger zathura joshuto herdr claude
+stow -n -v -t ~ bash zsh git tmux vim fish kitty nvim ranger zathura joshuto herdr claude ccstatusline
 ```
 
 A dry run with no `LINK:`/`WARNING:` output for a package means it's already correctly stowed.
