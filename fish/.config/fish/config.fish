@@ -2,19 +2,32 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-eval (/opt/homebrew/bin/brew shellenv)
+if test -x /opt/homebrew/bin/brew
+    eval (/opt/homebrew/bin/brew shellenv)
+else if test -x /home/linuxbrew/.linuxbrew/bin/brew
+    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+end
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-if test -f /opt/homebrew/Caskroom/miniconda/base/bin/conda
-    eval /opt/homebrew/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | source
+set -l _conda_base /opt/homebrew/Caskroom/miniconda/base
+if not test -d $_conda_base
+    set _conda_base $HOME/miniconda3
+end
+if not test -d $_conda_base
+    set _conda_base $HOME/anaconda3
+end
+
+if test -f $_conda_base/bin/conda
+    eval $_conda_base/bin/conda "shell.fish" "hook" $argv | source
 else
-    if test -f "/opt/homebrew/Caskroom/miniconda/base/etc/fish/conf.d/conda.fish"
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/fish/conf.d/conda.fish"
+    if test -f "$_conda_base/etc/fish/conf.d/conda.fish"
+        . "$_conda_base/etc/fish/conf.d/conda.fish"
     else
-        set -x PATH "/opt/homebrew/Caskroom/miniconda/base/bin" $PATH
+        set -x PATH "$_conda_base/bin" $PATH
     end
 end
+set -e _conda_base
 # <<< conda initialize <<<
 
 # https://github.com/starship/starship
@@ -29,7 +42,7 @@ alias startTranslate="conda activate libre && libretranslate --load-only en,de"
 alias spotifyFix="spicetify update && spicetify restore backup apply"
 
 # spicetify
-fish_add_path /Users/amogh/.spicetify
+fish_add_path $HOME/.spicetify
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
@@ -52,10 +65,10 @@ print('✅ Done: output.txt created')
 end
 
 # Added by Antigravity
-fish_add_path /Users/amogh/.antigravity/antigravity/bin
+fish_add_path $HOME/.antigravity/antigravity/bin
 
 # Added by Antigravity CLI installer
-set -gx PATH "/Users/amogh/.local/bin" $PATH
+set -gx PATH "$HOME/.local/bin" $PATH
 
 # herdr-automatic-rename: live tab naming hook
 for _f in $HOME/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.fish

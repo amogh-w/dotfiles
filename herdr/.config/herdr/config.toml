@@ -4,7 +4,7 @@ onboarding = false
 
 # ── terminal ──────────────────────────────────────────────────────────
 [terminal]
-default_shell = "/opt/homebrew/bin/fish"
+default_shell = "/usr/bin/env fish"
 
 # ── keys ──────────────────────────────────────────────────────────────
 [keys]
