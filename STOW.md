@@ -58,6 +58,12 @@ Stow then links each skill folder on its own (`~/.claude/skills/local-pdf-transl
 After adding a new skill folder to the repo, run `stow -R -t ~ claude` to link it. Skills you create
 directly in `~/.claude/skills` stay local until you move them into the repo and restow.
 
+This repo is the single source of truth across every machine you run Claude Code on — author or edit
+a skill inside `claude/.claude/skills/<name>/` (not directly in `~/.claude/skills`), commit, then
+`git pull` + restow on the other machines. Never copy `~/.claude/skills/synced` into the repo — it's
+Claude Code's own auto-managed cache of built-in skills (`pdf`, `docx`, `morning`, etc.), not
+something you authored, and it regenerates itself on every machine.
+
 On Windows (no stow), link each skill with a directory junction from PowerShell, which needs no admin
 rights:
 

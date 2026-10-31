@@ -1,3 +1,8 @@
 .vscode
 .DS_Store
 jupyter/.jupyter/lab/workspaces
+
+# md-to-pdf skill: fonts auto-downloaded on first run (see ensure_fonts() in
+# md_to_pdf.py) — not tracked, same reason playwright's own browser cache
+# isn't: keeps the repo's git history from carrying 25MB+ of binary forever.
+claude/.claude/skills/md-to-pdf/fonts/

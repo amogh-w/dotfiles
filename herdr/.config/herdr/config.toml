@@ -4,7 +4,7 @@ onboarding = false
 
 # ── terminal ──────────────────────────────────────────────────────────
 [terminal]
-default_shell = "/usr/bin/env fish"
+default_shell = "fish"
 
 # ── keys ──────────────────────────────────────────────────────────────
 [keys]
@@ -26,17 +26,15 @@ description = "show or hide the usage dock"
 [theme]
 name = "catppuccin"
 auto_switch = true
-#light_name = "catppuccin-latte"
-#dark_name = "catppuccin"
 
 # ── theme.custom ──────────────────────────────────────────────────────
-# VS Code Dark Modern's explorer/editor/selection layout, remapped onto
-# catppuccin mocha tones, lavender accent
+# theme.custom.accent and ui.accent (below) are two separate config keys per
+# herdr's own docs (theme.custom.accent overrides the active theme's accent
+# token; ui.accent is its own default="cyan" setting for highlights/borders/
+# nav specifically) — not documented as aliases of each other. Both are set
+# to the same lavender here on purpose, for a visually consistent look; keep
+# them in sync if this ever changes.
 [theme.custom]
-# sidebar_bg = "#181825"       # mocha mantle — lighter than crust, still recessed vs. the panel
-# panel_bg = "#1e1e2e"         # mocha base — pane/editor area
-# active_row_bg = "#313244"    # mocha surface0 — hovered/active sidebar row
-# selection_bg = "#45475a"     # mocha surface1 — text selection
 accent = "#b4befe"           # mocha lavender — pane borders, active tab, highlights
 
 # ── ui ────────────────────────────────────────────────────────────────
@@ -47,11 +45,19 @@ pane_outer_borders = true
 pane_gaps = true
 accent = "#b4befe"
 prompt_new_tab_name = false
+# The herdr-pacer tabbar segments below embed a per-install path hash
+# (.../herdr-pacer-16ea3a7d9705/...) — regenerated automatically by
+# `herdr plugin action invoke herdr-pacer.setup` on a fresh install, not
+# something to hand-edit or try to make portable (herdr-pacer isn't on
+# $PATH, so this absolute path is the only thing that currently works).
 tab_bar_right = [
   { type = "zoom" },
   { type = "command", command = "~/.config/herdr/status.sh", interval_seconds = 60, timeout_seconds = 2 },
   { type = "hostname" },
   { type = "datetime", format = "%H:%M" },
+  { type = "command", command = "'/Users/amogh/.config/herdr/plugins/github/herdr-pacer-16ea3a7d9705/target/release/herdr-pacer' tabbar openai-codex", interval_seconds = 30, timeout_seconds = 3 },
+  { type = "command", command = "'/Users/amogh/.config/herdr/plugins/github/herdr-pacer-16ea3a7d9705/target/release/herdr-pacer' tabbar claude", interval_seconds = 30, timeout_seconds = 3 },
+  { type = "command", command = "'/Users/amogh/.config/herdr/plugins/github/herdr-pacer-16ea3a7d9705/target/release/herdr-pacer' tabbar opencode-go", interval_seconds = 30, timeout_seconds = 3 },
 ]
 tab_bar_right_separator = " · "
 
