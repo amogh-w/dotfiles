@@ -22,6 +22,12 @@ type = "plugin_action"
 command = "herdr-pacer.dock-toggle"
 description = "show or hide the usage dock"
 
+[[keys.command]]
+key = "prefix+a"
+type = "plugin_action"
+command = "herdr-pacer.subagents-toggle"
+description = "show or hide Claude's subagents in the Agents list"
+
 # ── theme ─────────────────────────────────────────────────────────────
 [theme]
 name = "catppuccin"
@@ -45,20 +51,22 @@ pane_outer_borders = true
 pane_gaps = true
 accent = "#b4befe"
 prompt_new_tab_name = false
-# The herdr-pacer tabbar segments below embed a per-install path hash
-# (.../herdr-pacer-16ea3a7d9705/...) — regenerated automatically by
-# `herdr plugin action invoke herdr-pacer.setup` on a fresh install, not
-# something to hand-edit or try to make portable (herdr-pacer isn't on
-# $PATH, so this absolute path is the only thing that currently works).
 tab_bar_right = [
   { type = "zoom" },
   { type = "command", command = "~/.config/herdr/status.sh", interval_seconds = 60, timeout_seconds = 2 },
   { type = "hostname" },
   { type = "datetime", format = "%H:%M" },
-  { type = "command", command = "'/Users/amogh/.config/herdr/plugins/github/herdr-pacer-16ea3a7d9705/target/release/herdr-pacer' tabbar openai-codex", interval_seconds = 30, timeout_seconds = 3 },
-  { type = "command", command = "'/Users/amogh/.config/herdr/plugins/github/herdr-pacer-16ea3a7d9705/target/release/herdr-pacer' tabbar claude", interval_seconds = 30, timeout_seconds = 3 },
-  { type = "command", command = "'/Users/amogh/.config/herdr/plugins/github/herdr-pacer-16ea3a7d9705/target/release/herdr-pacer' tabbar opencode-go", interval_seconds = 30, timeout_seconds = 3 },
 ]
+# herdr-pacer's setup action appends 1-3 more "tabbar" command segments here,
+# one per detected agent CLI (openai-codex/claude/opencode-go) — deliberately
+# NOT tracked. Each one bakes in an absolute, per-machine, per-install path
+# (username + a plugin install hash + an install-instance id), so committing
+# whatever one machine's setup wrote would point at a path that doesn't exist
+# on any other machine. After `git pull` + `stow -R -t ~ herdr` on a new
+# machine, re-run `herdr plugin action invoke herdr-pacer.setup` locally to
+# regenerate these for that machine, then DO NOT commit the result — strip
+# them back out (or `git checkout -- herdr/.config/herdr/config.toml` the
+# tab_bar_right block) before committing anything else in this file.
 tab_bar_right_separator = " · "
 
 agent_panel_sort = "spaces"
@@ -69,10 +77,15 @@ delivery = "system"
 [ui.sidebar]
 
 [ui.sidebar.agents]
+# herdr-pacer v0.12.0 regenerated this block (was the older ctx/5h/wk-only
+# layout). "$pacer_lines_ctx"/"_5h"/"_wk" are plain row labels, NOT a new
+# state scheme — the real $pacer_ctx_*/$pacer_5h_*/$pacer_wk_* state tokens
+# are unchanged, just joined by a new identity row ($pacer_branch/$pacer_name/
+# $pacer_repo). Colors recolored from pacer's defaults to Catppuccin Mocha
+# (same green/yellow/peach/red/surface2 mapping used everywhere else here).
 rows = [
-  ["state_icon", "machine", "workspace", "tab"],
-  ["agent"],
-  [{ token = "$pacer_ctx_ok", fg = "#a6e3a1" }, { token = "$pacer_ctx_warn", fg = "#f9e2af" }, { token = "$pacer_ctx_hot", fg = "#fab387" }, { token = "$pacer_ctx_crit", fg = "#f38ba8" }, { token = "$pacer_ctx", fg = "#585b70" }],
-  [{ token = "$pacer_5h_ok", fg = "#a6e3a1" }, { token = "$pacer_5h_warn", fg = "#f9e2af" }, { token = "$pacer_5h_hot", fg = "#fab387" }, { token = "$pacer_5h_crit", fg = "#f38ba8" }, { token = "$pacer_5h", fg = "#585b70" }],
-  [{ token = "$pacer_wk_ok", fg = "#a6e3a1" }, { token = "$pacer_wk_warn", fg = "#f9e2af" }, { token = "$pacer_wk_hot", fg = "#fab387" }, { token = "$pacer_wk_crit", fg = "#f38ba8" }, { token = "$pacer_wk", fg = "#585b70" }],
+  [{ token = "$pacer_branch", fg = "#585b70" }, "state_icon", { token = "$pacer_name", fg = "#b4befe", bold = true }, { token = "$pacer_repo", fg = "#585b70" }],
+  [{ token = "$pacer_lines_ctx", fg = "#585b70" }, { token = "$pacer_ctx_ok", fg = "#a6e3a1" }, { token = "$pacer_ctx_warn", fg = "#f9e2af" }, { token = "$pacer_ctx_hot", fg = "#fab387" }, { token = "$pacer_ctx_crit", fg = "#f38ba8" }, { token = "$pacer_ctx", fg = "#585b70" }],
+  [{ token = "$pacer_lines_5h", fg = "#585b70" }, { token = "$pacer_5h_ok", fg = "#a6e3a1" }, { token = "$pacer_5h_warn", fg = "#f9e2af" }, { token = "$pacer_5h_hot", fg = "#fab387" }, { token = "$pacer_5h_crit", fg = "#f38ba8" }, { token = "$pacer_5h", fg = "#585b70" }],
+  [{ token = "$pacer_lines_wk", fg = "#585b70" }, { token = "$pacer_wk_ok", fg = "#a6e3a1" }, { token = "$pacer_wk_warn", fg = "#f9e2af" }, { token = "$pacer_wk_hot", fg = "#fab387" }, { token = "$pacer_wk_crit", fg = "#f38ba8" }, { token = "$pacer_wk", fg = "#585b70" }],
 ]

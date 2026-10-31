@@ -29,11 +29,17 @@ new machine, then re-run its setup/action to regenerate that config.
   tmux's `automatic-rename`) or the agent session's context, instead of leaving them as plain
   numbered tabs. Needs a shell hook sourced from its install script in addition to the plugin
   itself; see its README's install script for the one-line setup.
-- **[herdr-pacer](https://github.com/amali01/herdr-pacer)** (`herdr-pacer`) - pacing bars for AI
-  agent usage in three places: dotted context/5h/weekly bars under each agent row in the sidebar, an
-  optional dock along the bottom of every tab, and optional tab-bar segments. Wraps the Claude Code
-  statusLine to read context usage. Install: `herdr plugin install amali01/herdr-pacer` then
-  `herdr plugin action invoke herdr-pacer.setup`. The dock is currently hidden
+- **[herdr-pacer](https://github.com/amali01/herdr-pacer)** (`herdr-pacer`, currently v0.12.0) -
+  pacing bars for AI agent usage, plus identity info, in the sidebar; an optional dock along the
+  bottom of every tab; and optional tab-bar segments (deliberately untracked — see STOW.md). Wraps
+  the Claude Code statusLine to read context usage. Install: `herdr plugin install
+  amali01/herdr-pacer` then `herdr plugin action invoke herdr-pacer.setup`. Update an existing
+  install with `herdr plugin update herdr-pacer --yes` (non-interactive needs `--yes`), then re-run
+  `herdr-pacer.setup` to pick up whatever config shape the new version expects — v0.12.0 replaced
+  the sidebar's old two-row `state_icon/machine/workspace/tab` + `agent` layout with a single
+  `$pacer_branch`/`state_icon`/`$pacer_name`/`$pacer_repo` row, kept the same
+  `$pacer_ctx_*`/`$pacer_5h_*`/`$pacer_wk_*` state tokens, and added a `prefix+a` keybind to
+  toggle subagents in the Agents list. The dock is currently hidden
   (`~/.config/herdr/plugins/config/herdr-pacer/settings.json` → `"hidden": true`) — only the sidebar
   bars are shown; toggle it back with `prefix+u` or `herdr plugin action invoke
   herdr-pacer.dock-toggle`.

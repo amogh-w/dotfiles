@@ -38,10 +38,14 @@ runtime files stay local to `$HOME` and only the files actually tracked in the r
 repo already stows `fish` and `herdr` with `--no-folding` for exactly this reason — if you add a new
 package where the app mixes config and runtime files in the same directory, do the same.
 
-`herdr/.config/herdr/config.toml` itself is tracked and fine to commit as-is — the sidebar rows and
-keybindings herdr plugins write there are portable (no per-install hashes). Herdr plugins themselves
-aren't tracked by this repo though; see the README's "Herdr plugins" section for what's installed and
-how to reinstall each one on a new machine.
+`herdr/.config/herdr/config.toml` itself is tracked and mostly fine to commit as-is — the sidebar
+rows and keybindings herdr plugins write there are portable (no per-install hashes). One exception:
+herdr-pacer's setup also appends 1-3 `tab_bar_right` "tabbar" command segments, one per detected
+agent CLI, each with an absolute per-machine path (username + plugin install hash + install-instance
+id) baked in. Those are **not** portable and must be stripped back out before committing — see the
+comment directly above `tab_bar_right` in that file for the exact reasoning and the recovery command.
+Herdr plugins themselves aren't tracked by this repo though; see the README's "Herdr plugins" section
+for what's installed and how to reinstall each one on a new machine.
 
 ## Claude skills
 
